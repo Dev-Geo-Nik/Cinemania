@@ -1,0 +1,62 @@
+.trending {
+	grid-area: "trending";
+	// background-color: red;
+}
+
+.section_title {
+	font-size: var(--fs-800);
+	font-weight: 300;
+	margin-bottom: 2.5rem;
+}
+.movies_container {
+	overflow: hidden;
+	display: grid;
+	width: 100%;
+	grid-auto-flow: column;
+	grid-gap: 4rem;
+}
+
+.single_container {
+	position: relative;
+	width: 47rem;
+	// max-width: fit-content(47rem);
+	height: 23rem;
+	// border-radius: 0.8rem;
+}
+
+.trending_image {
+	// object-fit: contain;
+	border-radius: 1rem;
+}
+
+.movie_detail_container {
+	position: absolute;
+	left: 5%;
+	bottom: 24%;
+	display: flex;
+	color: var(--clr-sub-title);
+}
+
+.year {
+}
+
+.list_item {
+	margin-left: 2rem;
+	list-style: unset;
+}
+
+.movie_icon {
+	margin-right: 0.5rem;
+}
+.span_flex {
+	display: flex;
+	align-items: center;
+}
+
+.movie_title {
+	position: absolute;
+	bottom: 10%;
+	left: 5%;
+	font-size: var(--fs-700);
+	font-weight: normal;
+}

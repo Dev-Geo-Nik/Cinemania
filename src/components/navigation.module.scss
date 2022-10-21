@@ -1,0 +1,40 @@
+.navigation {
+	width: 9.6rem;
+	height: 96rem;
+	flex-shrink: 0;
+	border-radius: 2rem;
+	margin-left: 2.5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--clr-nav-bg);
+}
+
+.logo {
+	margin: 3.2rem 0 7.5rem 0;
+}
+
+.icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	margin-bottom: 3rem;
+}
+
+.inactive {
+	color: var(--clr-nav-icon);
+}
+
+.active {
+	color: var(--clr-nav-icon-active);
+}
+
+.avatar_container {
+	margin-top: auto;
+	width: 4rem;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	margin-bottom: 3.2rem;
+}
+
+.avatar {
+}

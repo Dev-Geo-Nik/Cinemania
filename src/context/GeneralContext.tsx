@@ -1,10 +1,17 @@
 import React, { createContext, Dispatch, ReactNode, useContext, useEffect, useReducer } from "react";
 import { Action } from "./Actions";
 import { reducer } from "./GeneralReducer";
+export interface GeneralContextState {
+	allData: any;
+	movies: any;
+	series: any;
+}
 
-export interface GeneralContextState {}
-
-const initialState: GeneralContextState = {};
+const initialState: GeneralContextState = {
+	allData: [],
+	movies: [],
+	series: [],
+};
 
 type ContextHook = () => {
 	state: GeneralContextState;

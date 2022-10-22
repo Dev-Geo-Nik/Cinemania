@@ -17,7 +17,7 @@ export const data =[
       year: 2019,
       category: "Movie",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: true
     },
     {
@@ -36,7 +36,7 @@ export const data =[
       year: 2021,
       category: "Movie",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: true
     },
     {
@@ -55,7 +55,7 @@ export const data =[
       year: 2019,
       category: "TV Series",
       rating: "E",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: true
     },
     {
@@ -74,7 +74,7 @@ export const data =[
       year: 2021,
       category: "Movie",
       rating: "18+",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: true
     },
     {
@@ -93,7 +93,7 @@ export const data =[
       year: 2018,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: true
     },
     {
@@ -108,7 +108,7 @@ export const data =[
       year: 2019,
       category: "Movie",
       rating: "E",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -123,7 +123,7 @@ export const data =[
       year: 2019,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -138,7 +138,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "18+",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -153,7 +153,7 @@ export const data =[
       year: 2019,
       category: "Movie",
       rating: "E",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -168,7 +168,7 @@ export const data =[
       year: 2016,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -183,7 +183,7 @@ export const data =[
       year: 2016,
       category: "TV Series",
       rating: "18+",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -198,7 +198,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "E",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -213,7 +213,7 @@ export const data =[
       year: 2016,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -228,7 +228,7 @@ export const data =[
       year: 2015,
       category: "TV Series",
       rating: "E",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -243,7 +243,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "PG",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -258,7 +258,7 @@ export const data =[
       year: 2018,
       category: "TV Series",
       rating: "18+",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -273,7 +273,7 @@ export const data =[
       year: 2015,
       category: "Movie",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -288,7 +288,7 @@ export const data =[
       year: 2021,
       category: "Movie",
       rating: "PG",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -303,7 +303,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "18+",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -318,7 +318,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "E",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -333,7 +333,7 @@ export const data =[
       year: 2013,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -348,7 +348,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "E",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -363,7 +363,7 @@ export const data =[
       year: 2018,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -378,7 +378,7 @@ export const data =[
       year: 2016,
       category: "TV Series",
       rating: "E",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -393,7 +393,7 @@ export const data =[
       year: 2020,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -408,7 +408,7 @@ export const data =[
       year: 2016,
       category: "TV Series",
       rating: "PG",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -423,7 +423,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "18+",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -438,7 +438,7 @@ export const data =[
       year: 2018,
       category: "TV Series",
       rating: "18+",
-      isBookmarked: false,
+      isBookmarked:false,
       isTrending: false
     },
     {
@@ -453,7 +453,7 @@ export const data =[
       year: 2017,
       category: "Movie",
       rating: "PG",
-      isBookmarked: true,
+      isBookmarked:false,
       isTrending: false
     }
   ]

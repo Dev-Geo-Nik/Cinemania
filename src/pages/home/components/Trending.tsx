@@ -1,5 +1,4 @@
 import styles from "./trending.module.scss";
-import { data } from "../../../data/data";
 
 import Bookmark from "../../../components/Bookmark";
 import { MdLocalMovies, MdLiveTv } from "react-icons/md";
@@ -7,7 +6,7 @@ import { useGeneralContext } from "../../../context/GeneralContext";
 
 const Trending: React.FC = () => {
 	const {
-		state: { allData },
+		state: { allData, homeFilter },
 	} = useGeneralContext();
 
 	let displayTrendingMovies = allData.map((movie: any, index: any) => {
@@ -39,10 +38,14 @@ const Trending: React.FC = () => {
 	});
 
 	return (
-		<section className={styles.trending}>
-			<h2 className={styles.section_title}>Trending</h2>
-			<div className={styles.movies_container}>{displayTrendingMovies}</div>
-		</section>
+		<>
+			{!homeFilter ? (
+				<section className={styles.trending}>
+					<h2 className={styles.section_title}>Trending</h2>
+					<div className={styles.movies_container}>{displayTrendingMovies}</div>
+				</section>
+			) : null}
+		</>
 	);
 };
 

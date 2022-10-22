@@ -29,7 +29,7 @@ const Navigation: React.FC = () => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/bookmark" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+					<NavLink to="/media/bookmarked" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
 						<MdBookmark className={styles.icon} />
 					</NavLink>
 				</li>

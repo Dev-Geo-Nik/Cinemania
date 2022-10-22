@@ -1,6 +1,12 @@
-export const getNumberOfWeek = () => {
-	const today: any = new Date();
-	const firstDayOfYear: any = new Date(today.getFullYear(), 0, 1);
-	const pastDaysOfYear = (today - firstDayOfYear) / 86400000;
-	return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+export const findPath = (requestShowCategory: string) => {
+	switch (requestShowCategory) {
+		case "movies":
+			return "movies";
+
+		case "series":
+			return "series";
+
+		default:
+			return "";
+	}
 };

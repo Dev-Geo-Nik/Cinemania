@@ -13,6 +13,32 @@ export const reducer: ReducerType = (state, action) => {
 				allData: action.payload.allData,
 				movies: action.payload.moviesArray,
 				series: action.payload.seriesArray,
+				favMovies: action.payload.favMovies,
+				favSeries: action.payload.favSeries,
+			};
+		case ActionTypes.UPDATE_FILTER_SEARCH:
+			if (action.payload.searchPath === "movies") {
+				return {
+					...state,
+					searchFilter: action.payload.searchValue,
+				};
+			}
+			if (action.payload.searchPath === "series") {
+				return {
+					...state,
+					searchFilter: action.payload.searchValue,
+				};
+			}
+			if (action.payload.searchPath === "bookmarked") {
+				return {
+					...state,
+					bookmarkedFilter: action.payload.searchValue,
+				};
+			}
+			// default home search
+			return {
+				...state,
+				homeFilter: action.payload.searchValue,
 			};
 
 		default:

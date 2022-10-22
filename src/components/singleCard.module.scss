@@ -1,17 +1,13 @@
 .single_container {
 	position: relative;
-	width: 28rem;
+	width: 27.8rem;
 	margin: 0 4rem 3.2rem 0;
 }
 
-.wrapper {
-	display: flex;
-	flex-wrap: wrap;
-}
-.image {
-	width: 100%;
-	border-radius: 1rem;
-}
+// .wrapper {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// }
 
 .detail_container {
 	color: var(--clr-sub-title);
@@ -26,6 +22,7 @@
 .movie_icon {
 	margin-right: 0.5rem;
 }
+
 .span_flex {
 	display: flex;
 	align-items: center;

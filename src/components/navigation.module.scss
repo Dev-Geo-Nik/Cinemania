@@ -36,5 +36,14 @@
 	margin-bottom: 3.2rem;
 }
 
+li {
+	transition: all 0.5s ease-in-out;
+}
+
+li:hover {
+	.icon {
+		color: var(--clr-nav-hover);
+	}
+}
 .avatar {
 }

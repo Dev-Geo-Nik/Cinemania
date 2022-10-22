@@ -1,6 +1,5 @@
 .trending {
 	grid-area: "trending";
-	// background-color: red;
 }
 
 .section_title {
@@ -19,14 +18,13 @@
 .single_container {
 	position: relative;
 	width: 47rem;
-	// max-width: fit-content(47rem);
 	height: 23rem;
-	// border-radius: 0.8rem;
 }
 
 .trending_image {
-	// object-fit: contain;
-	border-radius: 1rem;
+	width: 100%;
+	height: 100%;
+	border-radius: 0.8rem;
 }
 
 .movie_detail_container {
@@ -39,7 +37,6 @@
 
 .year {
 }
-
 .list_item {
 	margin-left: 2rem;
 	list-style: unset;

@@ -1,16 +1,26 @@
-import React, { createContext, Dispatch, ReactNode, useContext, useEffect, useReducer } from "react";
+import React, { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
 import { Action } from "./Actions";
 import { reducer } from "./GeneralReducer";
 export interface GeneralContextState {
 	allData: any;
 	movies: any;
 	series: any;
-}
+	favMovies: any;
+	favSeries: any;
+	homeFilter: string;
 
+	searchFilter: string;
+	bookmarkedFilter: string;
+}
 const initialState: GeneralContextState = {
 	allData: [],
 	movies: [],
 	series: [],
+	favMovies: [],
+	favSeries: [],
+	homeFilter: "",
+	searchFilter: "",
+	bookmarkedFilter: "",
 };
 
 type ContextHook = () => {

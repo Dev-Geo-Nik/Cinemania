@@ -21,6 +21,7 @@ const App: React.FC = () => {
 		const MOVIE = "Movie";
 		const TV_SERIES = "TV Series";
 
+		// Todo  save the states to the local storage and create bookmark system.
 		data.map((a: any) => {
 			if (a.category === MOVIE) {
 				movies.push(a);

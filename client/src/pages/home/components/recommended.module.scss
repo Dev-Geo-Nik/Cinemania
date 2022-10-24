@@ -17,3 +17,10 @@
 .image {
 	border-radius: 0.8rem;
 }
+
+// 375 -480px
+@media (max-width: 30em) {
+	.section_title {
+		font-size: var(--fs-800-s);
+	}
+}

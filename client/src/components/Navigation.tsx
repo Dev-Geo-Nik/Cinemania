@@ -4,40 +4,62 @@ import Avatar from "../assets/img/avatar.png";
 
 // Libraries
 import { NavLink } from "react-router-dom";
-import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark } from "react-icons/md";
+import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark, MdPersonAddAlt1, MdLogin } from "react-icons/md";
+import { useGeneralContext } from "../context/GeneralContext";
 
 const Navigation: React.FC = () => {
+	const {
+		state: { user },
+	} = useGeneralContext();
 	return (
-		<nav className={styles.navigation}>
-			<div>
-				<img src={Logo} alt="" className={styles.logo} />
-			</div>
-			<ul className={styles.list}>
-				<li>
-					<NavLink to="/" end className={({ isActive }) => (isActive ? ` ${styles.active} ` : `${styles.inactive}`)}>
-						<MdViewList className={styles.icon} />
+		<div className={styles.nav_wrapper}>
+			<nav className={styles.navigation}>
+				<div className={styles.logo_wrapper}>
+					<NavLink to="/" end>
+						<img src={Logo} alt="" className={styles.logo} />
 					</NavLink>
-				</li>
-				<li>
-					<NavLink to="/media/movies" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-						<MdLocalMovies className={styles.icon} />
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="/media/series" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-						<MdLiveTv className={styles.icon} />
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="/media/bookmarked" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-						<MdBookmark className={styles.icon} />
-					</NavLink>
-				</li>
-			</ul>
-			<div className={styles.avatar_container}>
-				<img src={Avatar} alt="user avatar" className={styles.avatar} />
-			</div>
-		</nav>
+				</div>
+				<ul className={styles.list}>
+					<li>
+						<NavLink to="/" end className={({ isActive }) => (isActive ? ` ${styles.active} ` : `${styles.inactive}`)}>
+							<MdViewList className={styles.icon} />
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/media/movies" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdLocalMovies className={styles.icon} />
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/media/series" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdLiveTv className={styles.icon} />
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/media/bookmarked" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdBookmark className={styles.icon} />
+						</NavLink>
+					</li>
+				</ul>
+				{user && (
+					<div className={styles.avatar_container}>
+						<img src={Avatar} alt="user avatar" className={styles.avatar} />
+					</div>
+				)}
+				<div className={styles.user_links}>
+					<li>
+						<NavLink to="/user/login" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdLogin className={styles.icon} />
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/user/register" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdPersonAddAlt1 className={styles.icon} />
+						</NavLink>
+					</li>
+				</div>
+			</nav>
+		</div>
 	);
 };
 

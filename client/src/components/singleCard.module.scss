@@ -32,3 +32,26 @@
 	font-size: var(--fs-500);
 	font-weight: 300;
 }
+
+// / 760px 1024px
+@media (max-width: 64em) {
+	.single_container {
+		width: 22rem;
+		margin: 0 2.6rem 2.4rem 0;
+	}
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.single_container {
+		width: 16rem;
+		margin: 0 1.4rem 1.4rem 0;
+	}
+
+	.detail_container {
+		font-size: var(--fs-400-s);
+	}
+	.title {
+		font-size: var(--fs-600-s);
+	}
+}

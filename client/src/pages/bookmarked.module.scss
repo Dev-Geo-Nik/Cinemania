@@ -24,3 +24,24 @@
 	font-weight: 300;
 	margin-bottom: 2.5rem;
 }
+
+@media (max-width: 64em) {
+	.Bookmarked {
+		flex-direction: column;
+	}
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.Bookmarked {
+		padding-top: 0rem;
+	}
+
+	.container {
+		margin-left: 2rem;
+	}
+
+	.section_title {
+		font-size: var(--fs-800-s);
+	}
+}

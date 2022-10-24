@@ -28,14 +28,14 @@ html {
 	--clr-bookmark-bg-hover: #fff;
 
 	--clr-sub-title: rgba(255, 255, 255, 0.75);
-
+	--clr-btn-act: #fc4747;
 	// --fs-900: 20rem;
 	--fs-800: 3.2rem;
 	--fs-700: 2.4rem;
 	// --fs-600: 2.4rem;
 	--fs-500: 1.8rem;
 	--fs-400: 1.5rem;
-	// --fs-300: 1.6rem;
+	--fs-300: 1.3rem;
 	// --fs-200: 1.5rem;
 
 	--box-shadow-1: 0 3px 8px rgba(0, 0, 0, 0.1);
@@ -181,9 +181,10 @@ select {
 	:root {
 		// Smartphone
 		// --fs-900-s: 10rem;
-		// --fs-800-s: 2rem;
-		// --fs-700-s: 1.5rem;
-		// --fs-400-s: 1.2rem;
+		--fs-800-s: 2rem;
+		--fs-700-s: 1.5rem;
+		--fs-600-s: 1.4rem;
+		--fs-400-s: 1.2rem;
 		// --fs-200-s: 1rem;
 	}
 }

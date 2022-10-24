@@ -57,3 +57,28 @@
 	font-size: var(--fs-700);
 	font-weight: normal;
 }
+
+// 375 -480px
+@media (max-width: 30em) {
+	.section_title {
+		font-size: var(--fs-800-s);
+		margin-bottom: 2rem;
+	}
+	.movies_container {
+		grid-auto-flow: column;
+		grid-gap: 2rem;
+	}
+	.single_container {
+		position: relative;
+		width: 24rem;
+		height: 14rem;
+	}
+
+	.movie_detail_container {
+		font-size: var(--fs-400-s);
+	}
+
+	.movie_title {
+		font-size: var(--fs-700-s);
+	}
+}

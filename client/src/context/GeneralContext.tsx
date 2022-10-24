@@ -11,6 +11,7 @@ export interface GeneralContextState {
 
 	searchFilter: string;
 	bookmarkedFilter: string;
+	user: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -21,6 +22,7 @@ const initialState: GeneralContextState = {
 	homeFilter: "",
 	searchFilter: "",
 	bookmarkedFilter: "",
+	user: null,
 };
 
 type ContextHook = () => {

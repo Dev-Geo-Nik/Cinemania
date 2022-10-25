@@ -1,0 +1,70 @@
+.btn_register_form {
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	background: none;
+	border: 1px solid var(--clr-red-1);
+	width: 100%;
+	padding: 8px 0;
+	color: #fff;
+	transition: all 0.4s ease-in-out;
+	margin-top: 2rem;
+	height: 4.8rem;
+	font-weight: 300;
+	border-radius: 0.6rem;
+	transition: all 0.5s ease-in-out;
+}
+
+.btn_register_form:before,
+.btn_register_form:after,
+.btn_register_form span:before,
+.btn_register_form span:after {
+	content: "";
+	position: absolute;
+	width: 25%;
+	height: 100%;
+	background-color: var(--clr-red-1);
+	z-index: -1;
+	transition: all 0.5s;
+}
+
+.btn_register_form:before {
+	top: 0;
+	left: -25%;
+}
+.btn_register_form:after {
+	top: -100%;
+	left: 25%;
+}
+
+.btn_register_form:hover:before {
+	top: 0;
+	left: 0;
+}
+.btn_register_form:hover:after {
+	top: 0;
+	left: 25%;
+}
+
+.btn_register_form span:before {
+	top: 0;
+	right: -25%;
+	transition-delay: 0.2s;
+}
+.btn_register_form span:after {
+	bottom: -100%;
+	right: 25%;
+}
+
+.btn_register_form:hover span:before {
+	top: 0;
+	right: 0;
+}
+.btn_register_form:hover span:after {
+	top: 0;
+	right: 25%;
+}
+
+.btn_register_form:hover {
+	color: #fff;
+}

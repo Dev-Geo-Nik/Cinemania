@@ -16,6 +16,11 @@ export const reducer: ReducerType = (state, action) => {
 				favMovies: action.payload.favMovies,
 				favSeries: action.payload.favSeries,
 			};
+		case ActionTypes.TOGGLE_LOADING:
+			return {
+				...state,
+				isLoading: action.payload,
+			};
 		case ActionTypes.UPDATE_FILTER_SEARCH:
 			if (action.payload.searchPath === "movies") {
 				return {

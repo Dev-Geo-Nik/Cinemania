@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSpring, animated as a } from "react-spring";
+import { loginUserSchema } from "../../utils/helpers";
 
 // Local
 import Navigation from "../../components/Navigation";
-import { loginUserSchema } from "../../utils/helpers";
 import styles from "./register.module.scss";
 import { useState } from "react";
+import { useGeneralContext } from "../../context/GeneralContext";
+import ButtonLogin from "../../components/ButtonLogin";
+import Spinner from "../../components/Spinner";
+import { ActionTypes } from "../../context/Actions";
+
 // import Logo from "../../assets/img/logo.svg";
 
 // Register and Login Page share the register.module.scss
@@ -18,6 +23,11 @@ type LoginUser = {
 };
 
 const Login: React.FC = () => {
+	const {
+		state: { BACKEND_URL, isLoading },
+		dispatch,
+	} = useGeneralContext();
+
 	const [success, setSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
@@ -44,37 +54,36 @@ const Login: React.FC = () => {
 
 	const onSubmit = (formData: LoginUser) => {
 		const postData = async () => {
-			const registerUserPayload = {
+			// prettier-ignore
+			const loginUserPayload = {
 				email: formData.email,
-				password: formData.password,
+				password: formData.password
 			};
-
+			// prettier-ignore
 			const request = {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(registerUserPayload),
+				headers: { "Content-Type": "application/json", "Accept": "application/json, text-plain,/" },
+				body: JSON.stringify(loginUserPayload),
 			};
 
 			try {
-				//   dispatch({type:ActionTypes.TOGGLE_LOADING ,payload:true})
+				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: true });
 
-				const res = await fetch("http://localhost:1340/api/auth/local/register", request);
+				const res = await fetch(`${BACKEND_URL}/user/login`, request);
 				const data = await res.json();
+				console.log(data);
+				if (data.data.token) {
+					console.log(data.data.token);
+					console.log(data.data.name);
 
-				if (data.user) {
-					// console.log(data.jwt)
-					// console.log(data.user)
-					// dispatch({type:ActionTypes.TOGGLE_LOADING ,payload:false})
-
+					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 					setSuccess(true);
 					setErrorMessage("");
 				}
 
-				if (data.error) {
-					// dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
-					let message = data.error.message.includes("Email") ? data.error.message : "Username is already taken";
+				if (data.data.error) {
+					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
+					let message = "Wrong username or password.";
 					setIsError(true);
 					setErrorMessage(message);
 				}
@@ -85,7 +94,7 @@ const Login: React.FC = () => {
 				}, 100);
 
 				setErrorMessage(err.message);
-				// dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
+				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 			}
 		};
 
@@ -101,6 +110,8 @@ const Login: React.FC = () => {
 	return (
 		<section className={styles.register}>
 			<Navigation />
+
+			{isLoading && <Spinner />}
 			<div className={styles.wrapper}>
 				<a.div
 					className={styles.form_container}
@@ -118,13 +129,25 @@ const Login: React.FC = () => {
 						<div className={styles.form_control}>
 							<input type="email" placeholder="Email address" {...register("email")} />
 						</div>
-						{errors.email ? <span className={styles.error}>{errors.email.message}</span> : <span className={styles.error}></span>}
+						{errors.email ? (
+							<span className={styles.error}>{errors.email.message}</span>
+						) : isError ? (
+							<span className={styles.error}>{errorMessage}</span>
+						) : (
+							<span className={styles.error}></span>
+						)}
 						<div className={styles.form_control}>
 							<input type="password" placeholder="Password" {...register("password")} />
 						</div>
-						{errors.password ? <span className={styles.error}>{errors.password.message}</span> : <span className={styles.error}></span>}
+						{errors.email ? (
+							<span className={styles.error}>{errors.email.message}</span>
+						) : isError ? (
+							<span className={styles.error}>{errorMessage}</span>
+						) : (
+							<span className={styles.error}></span>
+						)}
 
-						<button className={styles.btn_cta}>Login to your account</button>
+						<ButtonLogin />
 					</form>
 					<div className={styles.link_container}>
 						<span className={styles.span_link_text}>Don’t have an account?</span>

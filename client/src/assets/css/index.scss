@@ -192,3 +192,15 @@ select {
 // 481px - 750px
 @media (min-width: 30.1em) and (max-width: 46.875em) {
 }
+
+@keyframes fadeInDown {
+	0% {
+		opacity: 0;
+
+		transform: translateY(-200%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

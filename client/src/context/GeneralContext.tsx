@@ -8,10 +8,11 @@ export interface GeneralContextState {
 	favMovies: any;
 	favSeries: any;
 	homeFilter: string;
-
+	BACKEND_URL: string;
 	searchFilter: string;
 	bookmarkedFilter: string;
 	user: any;
+	isLoading: boolean;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -23,6 +24,8 @@ const initialState: GeneralContextState = {
 	searchFilter: "",
 	bookmarkedFilter: "",
 	user: null,
+	BACKEND_URL: " http://127.0.0.1:8000/api",
+	isLoading: false,
 };
 
 type ContextHook = () => {

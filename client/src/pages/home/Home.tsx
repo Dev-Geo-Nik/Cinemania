@@ -5,6 +5,7 @@ import Trending from "./components/Trending";
 import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
+	console.log("loading");
 	return (
 		<section className={styles.home}>
 			<Navigation />

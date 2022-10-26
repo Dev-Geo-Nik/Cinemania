@@ -16,6 +16,7 @@ const Router: React.FC = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/user/register" element={<Register />} />
+
 					<Route path="/user/login" element={<Login />} />
 					<Route path="/media/:category" element={<Media />} />
 					<Route path="/media/bookmarked" element={<Bookmarked />} />

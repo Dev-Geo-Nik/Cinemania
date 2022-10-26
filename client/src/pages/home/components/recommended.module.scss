@@ -1,6 +1,7 @@
 .recommended {
 	padding-top: 4rem;
 	// background-color: lightblue;
+	// overflow: hidden;
 }
 
 .section_title {
@@ -9,7 +10,7 @@
 	padding-bottom: 3.2rem;
 }
 
-.wrapper {
+.recommended_wrapper {
 	display: flex;
 	flex-wrap: wrap;
 }

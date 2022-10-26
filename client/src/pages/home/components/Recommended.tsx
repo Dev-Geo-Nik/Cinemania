@@ -38,7 +38,7 @@ const Recommended: React.FC = () => {
 	return (
 		<section className={styles.recommended}>
 			<h2 className={styles.section_title}>Recommended for you</h2>
-			<div className={styles.wrapper}>{displayRecommendedMovies}</div>
+			<div className={styles.recommended_wrapper}>{displayRecommendedMovies}</div>
 		</section>
 	);
 };

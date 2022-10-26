@@ -1,5 +1,6 @@
 .trending {
 	grid-area: "trending";
+	// overflow: hidden;
 }
 
 .section_title {
@@ -8,30 +9,37 @@
 	margin-bottom: 2.5rem;
 }
 .movies_container {
-	overflow: hidden;
+	// background-color: red;
 	display: grid;
-	width: 100%;
+
 	grid-auto-flow: column;
 	grid-gap: 4rem;
 }
 
 .single_container {
 	position: relative;
-	width: 47rem;
-	height: 23rem;
+	width: 28rem;
+	// height: 28rem;
+	// background-color: palegreen;
+	text-overflow: ellipsis;
+
+	// height: 25rem;
 }
 
 .trending_image {
 	width: 100%;
-	height: 100%;
+	height: 25rem;
 	border-radius: 0.8rem;
 }
 
 .movie_detail_container {
-	position: absolute;
-	left: 5%;
-	bottom: 24%;
+	// position: absolute;
+	// left: 5%;
+	// bottom: 24%;
+
+	margin-top: 1rem;
 	display: flex;
+
 	color: var(--clr-sub-title);
 }
 
@@ -51,11 +59,21 @@
 }
 
 .movie_title {
-	position: absolute;
-	bottom: 10%;
-	left: 5%;
+	// position: absolute;
+	// bottom: 10%;
+	// left: 5%;
+	// width: 20rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	font-size: var(--fs-700);
-	font-weight: normal;
+}
+
+.rating_wrapper {
+	position: absolute;
+	left: 10%;
+	top: -5%;
+	width: 5rem;
 }
 
 // 375 -480px

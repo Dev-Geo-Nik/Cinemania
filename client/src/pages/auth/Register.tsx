@@ -132,7 +132,6 @@ const Register: React.FC = () => {
 			</div>
 		</>
 	);
-
 	return (
 		<section className={styles.register}>
 			<Navigation />

@@ -26,7 +26,7 @@ const Bookmarked: React.FC = () => {
 				thumbnail: { regular },
 			} = movie;
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 
 		displayBookmarkedSeries = filteredSeries.map((movie: any, index: any) => {
@@ -35,7 +35,7 @@ const Bookmarked: React.FC = () => {
 				thumbnail: { regular },
 			} = movie;
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 	}
 
@@ -46,7 +46,7 @@ const Bookmarked: React.FC = () => {
 				thumbnail: { regular },
 			} = movie;
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 
 		displayBookmarkedSeries = favSeries.map((movie: any, index: any) => {
@@ -55,7 +55,7 @@ const Bookmarked: React.FC = () => {
 				thumbnail: { regular },
 			} = movie;
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`./../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 	}
 

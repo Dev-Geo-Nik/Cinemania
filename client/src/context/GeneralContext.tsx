@@ -13,6 +13,8 @@ export interface GeneralContextState {
 	bookmarkedFilter: string;
 	user: any;
 	isLoading: boolean;
+	week_trending: any;
+	trending_people: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -24,8 +26,10 @@ const initialState: GeneralContextState = {
 	searchFilter: "",
 	bookmarkedFilter: "",
 	user: null,
-	BACKEND_URL: "http://localhost:8000/api/",
+	BACKEND_URL: "http://localhost:8000/api",
 	isLoading: false,
+	week_trending: [],
+	trending_people: [],
 };
 
 type ContextHook = () => {

@@ -21,6 +21,16 @@ export const reducer: ReducerType = (state, action) => {
 				...state,
 				isLoading: action.payload,
 			};
+		case ActionTypes.FETCH_WEEK_TRENDING:
+			return {
+				...state,
+				week_trending: action.payload,
+			};
+		case ActionTypes.FETCH_TRENDING_PEOPLE:
+			return {
+				...state,
+				trending_people: action.payload,
+			};
 		case ActionTypes.UPDATE_FILTER_SEARCH:
 			if (action.payload.searchPath === "movies") {
 				return {

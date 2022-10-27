@@ -1,13 +1,8 @@
 .single_container {
 	position: relative;
 	width: 27.8rem;
-	margin: 0 4rem 3.2rem 0;
+	margin: 0 4rem 5rem 0;
 }
-
-// .wrapper {
-// 	display: flex;
-// 	flex-wrap: wrap;
-// }
 
 .detail_container {
 	color: var(--clr-sub-title);
@@ -33,6 +28,20 @@
 	font-weight: 300;
 }
 
+.rating_wrapper {
+	position: absolute;
+	left: 10%;
+	top: -7%;
+	width: 5rem;
+	z-index: 2;
+}
+
+.movie_title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 // / 760px 1024px
 @media (max-width: 64em) {
 	.single_container {
@@ -51,7 +60,7 @@
 	.detail_container {
 		font-size: var(--fs-400-s);
 	}
-	.title {
+	.movie_title {
 		font-size: var(--fs-600-s);
 	}
 }

@@ -29,6 +29,14 @@
 	border-radius: 0.8rem;
 }
 
+.rating_wrapper {
+	position: absolute;
+	left: 10%;
+	top: -5%;
+	width: 5rem;
+	z-index: 2;
+}
+
 // / 760px 1024px
 @media (max-width: 64em) {
 	.media {

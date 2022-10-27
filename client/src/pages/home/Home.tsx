@@ -2,6 +2,7 @@ import Navigation from "../../components/Navigation";
 import SearchBar from "../../components/SearchBar";
 import Recommended from "./components/Recommended";
 import Trending from "./components/Trending";
+import TrendingPeople from "./components/TrendingPeople";
 import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
 				<SearchBar label="Search for movies or TV series" path={"home"} />
 				<Trending />
 				<Recommended />
+				<TrendingPeople />
 			</div>
 		</section>
 	);

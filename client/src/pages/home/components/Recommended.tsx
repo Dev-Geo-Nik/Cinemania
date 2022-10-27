@@ -4,40 +4,41 @@ import Bookmark from "../../../components/Bookmark";
 import { useGeneralContext } from "../../../context/GeneralContext";
 import { MdLocalMovies, MdLiveTv } from "react-icons/md";
 import SingleCard from "../../../components/SingleCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ActionTypes } from "../../../context/Actions";
 
 const Recommended: React.FC = () => {
 	const {
-		state: { allData, homeFilter },
+		state: { allData, homeFilter, BACKEND_URL, week_trending },
+		dispatch,
 	} = useGeneralContext();
+
 	let displayRecommendedMovies;
-	if (homeFilter) {
-		const filtered = allData.filter((a: any) => {
-			return a.title.toLowerCase().includes(homeFilter);
-		});
 
-		displayRecommendedMovies = filtered.map((movie: any, index: any) => {
-			const {
-				thumbnail: { regular },
-			} = movie;
+	useEffect(() => {
+		const asyncFetch = async () => {
+			try {
+				const res = await fetch(`${BACKEND_URL}/movies/week-trending`);
+				if (res.status >= 200 && res.status < 300) {
+					const responseData = await res.json();
+					if (responseData) {
+						dispatch({ type: ActionTypes.FETCH_WEEK_TRENDING, payload: responseData.results });
+					}
+				}
+			} catch (err: any) {}
+		};
+		asyncFetch();
+	}, []);
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
-		});
-	}
-
-	if (homeFilter.length === 0) {
-		displayRecommendedMovies = allData.map((movie: any, index: any) => {
-			const {
-				thumbnail: { regular },
-			} = movie;
-
-			return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
+	if (week_trending) {
+		displayRecommendedMovies = week_trending.map((movie: any, index: any) => {
+			return <SingleCard key={index} media={movie} />;
 		});
 	}
 
 	return (
 		<section className={styles.recommended}>
-			<h2 className={styles.section_title}>Recommended for you</h2>
+			<h2 className={styles.section_title}>Weekly trending movies or TV series </h2>
 			<div className={styles.recommended_wrapper}>{displayRecommendedMovies}</div>
 		</section>
 	);

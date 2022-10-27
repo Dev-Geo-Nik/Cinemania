@@ -36,7 +36,7 @@ const Media: React.FC<Props> = () => {
 				thumbnail: { regular },
 			} = movie;
 
-			return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 	}
 
@@ -45,7 +45,7 @@ const Media: React.FC<Props> = () => {
 			const {
 				thumbnail: { regular },
 			} = movie;
-			return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
+			// return <SingleCard key={index} media={movie} image={<img src={require(`../../../${regular.large}`)} alt="" className={styles.image} />} />;
 		});
 	}
 

@@ -42,11 +42,20 @@
 	text-overflow: ellipsis;
 }
 
+.trending_image {
+	height: 40rem;
+}
+.trending_image {
+}
 // / 760px 1024px
 @media (max-width: 64em) {
 	.single_container {
 		width: 22rem;
-		margin: 0 2.6rem 2.4rem 0;
+		margin: 0 2.6rem 4rem 0;
+	}
+
+	.trending_image {
+		height: 36rem;
 	}
 }
 
@@ -54,7 +63,7 @@
 @media (max-width: 30em) {
 	.single_container {
 		width: 16rem;
-		margin: 0 1.4rem 1.4rem 0;
+		margin: 0 1.4rem 3rem 0;
 	}
 
 	.detail_container {
@@ -62,5 +71,8 @@
 	}
 	.movie_title {
 		font-size: var(--fs-600-s);
+	}
+	.trending_image {
+		height: 20rem;
 	}
 }

@@ -1,0 +1,26 @@
+.media_section {
+	padding-top: 4rem;
+	position: relative;
+}
+
+.section_title {
+	font-weight: 300;
+	font-size: var(--fs-800);
+	padding-bottom: 4rem;
+}
+
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.image {
+	border-radius: 0.8rem;
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.section_title {
+		font-size: var(--fs-800-s);
+	}
+}

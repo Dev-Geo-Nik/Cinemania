@@ -1,0 +1,30 @@
+.movies {
+	min-height: 100vh;
+	padding-top: 3.2rem;
+	display: flex;
+	padding-bottom: 8rem;
+}
+
+.wrapper {
+	width: 100%;
+	margin-left: 3.5rem;
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+	.movies {
+		flex-direction: column;
+	}
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.movies {
+		padding: 0;
+	}
+
+	.wrapper {
+		width: 100%;
+		margin-left: 2rem;
+	}
+}

@@ -1,8 +1,5 @@
 import styles from "./recommended.module.scss";
-import { data } from "../../../data/data";
-import Bookmark from "../../../components/Bookmark";
 import { useGeneralContext } from "../../../context/GeneralContext";
-import { MdLocalMovies, MdLiveTv } from "react-icons/md";
 import SingleCard from "../../../components/SingleCard";
 import { useEffect, useState } from "react";
 import { ActionTypes } from "../../../context/Actions";

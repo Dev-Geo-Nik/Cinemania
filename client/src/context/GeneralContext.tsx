@@ -15,6 +15,8 @@ export interface GeneralContextState {
 	isLoading: boolean;
 	week_trending: any;
 	trending_people: any;
+	top_rated_movies: any;
+	upcoming_movies: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -30,6 +32,8 @@ const initialState: GeneralContextState = {
 	isLoading: false,
 	week_trending: [],
 	trending_people: [],
+	top_rated_movies: [],
+	upcoming_movies: [],
 };
 
 type ContextHook = () => {

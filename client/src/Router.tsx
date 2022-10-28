@@ -8,6 +8,7 @@ import Media from "./pages/dynamic/media/Media";
 import Bookmarked from "./pages/Bookmarked";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
+import Movies from "./pages/home/movies/Movies";
 
 const Router: React.FC = () => {
 	return (
@@ -18,8 +19,10 @@ const Router: React.FC = () => {
 					<Route path="/user/register" element={<Register />} />
 
 					<Route path="/user/login" element={<Login />} />
-					<Route path="/media/:category" element={<Media />} />
+					{/* <Route path="/media/:category" element={<Media />} /> */}
+					<Route path="/media/movies" element={<Movies />} />
 					<Route path="/media/bookmarked" element={<Bookmarked />} />
+
 					<Route path="*" element={<div>Error</div>} />
 				</Routes>
 			</BrowserRouter>

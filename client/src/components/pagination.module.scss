@@ -1,0 +1,19 @@
+.list {
+	display: flex;
+}
+
+.list_item_wrapper {
+}
+
+.list_item {
+	text-align: center;
+	width: 4rem;
+	// height: 3rem;
+	border: 1px solid #fff;
+	// padding: 0.8rem;
+}
+
+.active {
+	background-color: #fff;
+	color: #5a698f;
+}

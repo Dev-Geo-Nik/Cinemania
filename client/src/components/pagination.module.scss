@@ -1,5 +1,10 @@
 .list {
 	display: flex;
+	align-items: center;
+}
+
+.list li {
+	// float: bottom;
 }
 
 .list_item_wrapper {
@@ -11,6 +16,12 @@
 	// height: 3rem;
 	border: 1px solid #fff;
 	// padding: 0.8rem;
+}
+
+.ellipses_dots {
+	text-align: center;
+	width: 4rem;
+	border: 1px solid #fff;
 }
 
 .active {

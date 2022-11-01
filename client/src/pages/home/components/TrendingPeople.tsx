@@ -3,12 +3,11 @@ import styles from "./trendingPeople.module.scss";
 import { useGeneralContext } from "../../../context/GeneralContext";
 import { useEffect } from "react";
 import { ActionTypes } from "../../../context/Actions";
-import SingleCard from "../../../components/SingleCard";
 import Bookmark from "../../../components/Bookmark";
-import Rating from "../../../components/Rating";
-import ImagePlaceholder from "../../../assets/img/image-placeholder.jpg";
+
 // Libraries
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Pagination from "../../../components/Pagination";
 
 // export interface Root {
 // 	page: number;
@@ -49,16 +48,17 @@ export interface KnownFor {
 }
 const TrendingPeople: React.FC = () => {
 	const {
-		state: { BACKEND_URL, trending_people },
+		state: { BACKEND_URL, trending_people, actors_page },
 		dispatch,
 	} = useGeneralContext();
 
 	let displayRecommendedMovies;
+	console.log(actors_page);
 
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {
-				const res = await fetch(`${BACKEND_URL}/movies/trending-daily-persons`);
+				const res = await fetch(`${BACKEND_URL}/movies/trending-daily-persons/${actors_page}`);
 				if (res.status >= 200 && res.status < 300) {
 					const responseData = await res.json();
 					if (responseData) {
@@ -68,7 +68,7 @@ const TrendingPeople: React.FC = () => {
 			} catch (err: any) {}
 		};
 		asyncFetch();
-	}, []);
+	}, [actors_page]);
 
 	if (trending_people) {
 		displayRecommendedMovies = trending_people.map((actor: Person, index: any) => {
@@ -91,6 +91,7 @@ const TrendingPeople: React.FC = () => {
 		<section className={styles.trending_people}>
 			<h2 className={styles.section_title}>Daily trending cinema personalities </h2>
 			<div className={styles.trending_wrapper}>{displayRecommendedMovies}</div>
+			<Pagination maxPages={150} action={ActionTypes.FETCH_TRENDING_PEOPLE} />
 		</section>
 	);
 };

@@ -9,17 +9,18 @@ interface Props {
 	action: ActionTypes;
 	path: string;
 	section_title: string;
+	page: number;
 	data: any;
 }
 
-const MediaSection: React.FC<Props> = ({ action, section_title, path, data }) => {
+const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page }) => {
 	const {
 		state: { BACKEND_URL },
 		dispatch,
 	} = useGeneralContext();
 
-	const [page, setPage] = useState();
-
+	const [currentPage, setCurrentPage] = useState(1);
+	const totalPages = 100;
 	let displayMedia;
 
 	useEffect(() => {
@@ -50,8 +51,9 @@ const MediaSection: React.FC<Props> = ({ action, section_title, path, data }) =>
 		<section className={styles.media_section}>
 			<h2 className={styles.section_title}>{section_title}</h2>
 			<div className={styles.wrapper}>{displayMedia}</div>
-
-			<Pagination />
+			<div className={styles.pagination_wrapper}>
+				<Pagination maxPages={100} action={action} />
+			</div>
 		</section>
 	);
 };

@@ -1,60 +1,141 @@
-import { useEffect, useMemo, useState } from "react";
-import styles from "./pagination.module.scss";
-import ReactPaginate from "react-paginate";
+import { useEffect, useRef, useState } from "react";
+import { ActionTypes } from "../context/Actions";
 import { useGeneralContext } from "../context/GeneralContext";
+import { findActionTypeForUpdate } from "../utils/helpers";
+import styles from "./pagination.module.scss";
 
 interface Props {
-	totalCount: number;
-	pageSize: number;
-	siblingCount: number;
-	currentPage: number;
-	data: any;
+	// currentPage: number;
+	// maxPageLimit: number;
+	// minPageLimit: number;
+	maxPages: number;
+	action: ActionTypes;
 }
 
-const Pagination: React.FC = () => {
+const Pagination: React.FC<Props> = ({ maxPages, action }) => {
 	const {
 		state: { upcoming_movies },
+		dispatch,
 	} = useGeneralContext();
+	const pageNumberLimit = 5;
+	// const [passengersData, setData] = useState([]);
+	// const [loading, setLoading] = useState(true);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [maxPageLimit, setMaxPageLimit] = useState(5);
+	const [minPageLimit, setMinPageLimit] = useState(0);
+	const [requestNewPage, setRequestNewPage] = useState(false);
+	const totalPages = maxPages - 1;
 
-	const [inputValue, setInputValue] = useState("");
-
-	const [pageInfos, setPageInfos] = useState({
-		totalPageCount: 100,
-		minPageCount: 1,
-		sizePerPage: 20,
-		siblingCount: 2,
-		currentPage: 1,
-	});
-	const [currentItems, setCurrentItems] = useState(null);
-	const [itemOffset, setItemOffset] = useState(0);
-
-	const { totalPageCount, currentPage, sizePerPage, minPageCount } = pageInfos;
-	useEffect(() => {
-		// Fetch items from another resources.
-		const endOffset = itemOffset + sizePerPage;
-		console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-		setCurrentItems(numberOfPagesArray.slice(itemOffset, endOffset));
-		setPageInfos({
-			...pageInfos,
-			totalPageCount: Math.ceil(numberOfPagesArray.length / sizePerPage),
-		});
-	}, [itemOffset, sizePerPage]);
-
-	const numberOfPagesArray: any = [];
-	for (let index = 0; index <= totalPageCount; index++) {
-		numberOfPagesArray.push(index);
+	const pages = [];
+	for (let i = 1; i <= totalPages; i++) {
+		pages.push(i);
 	}
 
-	const handlePageClick = (e: any) => {
-		const newOffset = (e.selected * sizePerPage) % numberOfPagesArray.length;
-		console.log(`User requested page number ${e.selected}, which is offset ${newOffset}`);
-		setItemOffset(newOffset);
+	useEffect(() => {
+		console.log(action);
+		const actionType = findActionTypeForUpdate(action);
+
+		if (requestNewPage) {
+			// @ts-ignore
+			dispatch({ type: actionType, payload: currentPage });
+			setRequestNewPage(false);
+		}
+	}, [requestNewPage]);
+
+	const handleNextClick = () => {
+		setRequestNewPage(true);
+		if (currentPage + 1 > maxPageLimit) {
+			setMaxPageLimit(maxPageLimit + pageNumberLimit);
+			setMinPageLimit(minPageLimit + pageNumberLimit);
+		}
+
+		setCurrentPage((prev) => prev + 1);
+	};
+	const handlePrevClick = () => {
+		setRequestNewPage(true);
+		if ((currentPage - 1) % pageNumberLimit === 0) {
+			setMaxPageLimit(maxPageLimit - pageNumberLimit);
+			setMinPageLimit(minPageLimit - pageNumberLimit);
+		}
+		setCurrentPage((prev) => prev - 1);
+	};
+
+	// useFindAction(action, payload);
+
+	const handlerClick = (page: number) => {
+		setRequestNewPage(true);
+		setCurrentPage(page);
+	};
+
+	const pageNumbers = pages.map((page: any) => {
+		if (page <= maxPageLimit && page > minPageLimit) {
+			return (
+				<div key={page} className={styles.list_item_wrapper} onClick={() => handlerClick(page)}>
+					<li className={currentPage === page ? `${styles.list_item} ${styles.active}` : styles.list_item}>{page}</li>
+				</div>
+			);
+		} else {
+			return null;
+		}
+	});
+	// useFindAction(action, payload);
+
+	// page ellipses
+	let pageIncrementEllipses = null;
+	if (pages.length > maxPageLimit) {
+		pageIncrementEllipses = (
+			<li onClick={handleNextClick} className={styles.ellipses_dots}>
+				&hellip;
+			</li>
+		);
+	}
+	let pageDecrementEllipses = null;
+	if (minPageLimit >= 1) {
+		pageDecrementEllipses = (
+			<li onClick={handlePrevClick} className={styles.ellipses_dots}>
+				&hellip;
+			</li>
+		);
+	}
+
+	const onPageChange = (pageNumber: any) => {
+		setCurrentPage(pageNumber);
+	};
+
+	const handlerClickStart = () => {
+		setRequestNewPage(true);
+		setCurrentPage(1);
+		setMaxPageLimit(5);
+		setMinPageLimit(0);
 	};
 
 	return (
 		<>
-			{numberOfPagesArray}
-			<ReactPaginate breakLabel="..." nextLabel="next >" onPageChange={handlePageClick} pageRangeDisplayed={5} pageCount={sizePerPage} previousLabel="< previous" />
+			<ul className={styles.list}>
+				<li>
+					<button onClick={handlePrevClick} disabled={currentPage === pages[0]} className={styles.buttons}>
+						{"<"}
+					</button>
+				</li>
+				{pageDecrementEllipses ? (
+					<li className={styles.list_item} onClick={handlerClickStart}>
+						{pages[0]}
+					</li>
+				) : null}
+				{pageDecrementEllipses}
+				{pageNumbers}
+				{pageIncrementEllipses}
+				{/* {pageIncrementEllipses ? (
+				<li className={styles.list_item} onClick={() => handlerClick(totalPages)}>
+					{totalPages}{" "}
+				</li>
+			) : null} */}
+				<li>
+					<button onClick={handleNextClick} disabled={currentPage === pages[pages.length - 1]} className={styles.buttons}>
+						{">"}
+					</button>
+				</li>
+			</ul>
 		</>
 	);
 };

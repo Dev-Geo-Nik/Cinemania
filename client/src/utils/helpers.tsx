@@ -1,4 +1,6 @@
 import * as yup from "yup";
+import { ActionTypes } from "../context/Actions";
+import { useGeneralContext } from "../context/GeneralContext";
 
 export const findPath = (requestShowCategory: string) => {
 	switch (requestShowCategory) {
@@ -39,3 +41,31 @@ export const loginUserSchema = yup.object().shape({
 	email: yup.string().min(2, "Email is required").required("Email is required"),
 	password: yup.string().required("Password is required"),
 });
+
+export const findActionTypeForUpdate = (actionCategory: string) => {
+	const {
+		FETCH_TRENDING_PEOPLE,
+		UPDATE_TRENDING_PEOPLE,
+		FETCH_WEEK_TRENDING,
+		UPDATE_WEEK_TRENDING,
+		FETCH_TOP_RATED_MOVIES,
+		UPDATE_TOP_RATED_MOVIES,
+		FETCH_TOP_UPCOMING,
+		UPDATE_TOP_UPCOMING,
+	} = ActionTypes;
+
+	switch (actionCategory) {
+		case FETCH_TRENDING_PEOPLE:
+			return UPDATE_TRENDING_PEOPLE;
+
+		case FETCH_WEEK_TRENDING:
+			return UPDATE_WEEK_TRENDING;
+		case FETCH_TOP_RATED_MOVIES:
+			return UPDATE_TOP_RATED_MOVIES;
+		case FETCH_TOP_UPCOMING:
+			return UPDATE_TOP_UPCOMING;
+
+		default:
+			return "";
+	}
+};

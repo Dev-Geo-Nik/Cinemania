@@ -13,18 +13,44 @@
 .list_item {
 	text-align: center;
 	width: 4rem;
-	// height: 3rem;
 	border: 1px solid #fff;
-	// padding: 0.8rem;
+	// height: 3rem;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.list_item:hover {
+	background-color: #fff;
+	color: #5a698f;
 }
 
 .ellipses_dots {
 	text-align: center;
 	width: 4rem;
 	border: 1px solid #fff;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.ellipses_dots:hover {
+	background-color: #fff;
+	color: #5a698f;
 }
 
 .active {
 	background-color: #fff;
 	color: #5a698f;
+}
+
+.buttons {
+	width: 4rem;
+	// color: blue;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	border: 1px solid #fff;
+}
+
+.buttons:hover {
+	background-color: #5a698f;
+	color: #fff;
 }

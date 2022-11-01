@@ -1,25 +1,31 @@
 import { useMemo } from "react";
 
 interface Props {
+	// represents the total count of data available from the source.
 	totalCount: number;
-	pageSize: number;
-	siblingCount: number;
+	//: represents the current active page. We'll use a 1-based index instead of a traditional 0-based index for our currentPage value.
 	currentPage: number;
+	// represents the maximum data that is visible in a single page.
+	pageSize: number;
+	// represents the min number of page buttons to be shown on each side of the current page button. Defaults to 1.
+	siblingCount: number;
+	// callback function invoked with the updated page value when the page is changed.
+	// onPageChange:any
 }
 
 export const usePagination = ({ totalCount, pageSize, siblingCount = 1, currentPage }: Props) => {
 	const range = (start: number, end: number) => {
 		let length = end - start + 1;
 		/*
-        Create an array of certain length and set the elements within it from
-        start value to end value.
-        */
+			Create an array of certain length and set the elements within it from
+		  start value to end value.
+		*/
 		return Array.from({ length }, (_, idx) => idx + start);
 	};
 
 	const paginationRange = useMemo(() => {
 		const totalPageCount = Math.ceil(totalCount / pageSize);
-
+		const DOTS = "...";
 		// Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
 		const totalPageNumbers = siblingCount + 5;
 
@@ -27,7 +33,7 @@ export const usePagination = ({ totalCount, pageSize, siblingCount = 1, currentP
       Case 1:
       If the number of pages is less than the page numbers we want to show in our
       paginationComponent, we return the range [1..totalPageCount]
-     */
+    */
 		if (totalPageNumbers >= totalPageCount) {
 			return range(1, totalPageCount);
 		}
@@ -47,10 +53,9 @@ export const usePagination = ({ totalCount, pageSize, siblingCount = 1, currentP
 		const firstPageIndex = 1;
 		const lastPageIndex = totalPageCount;
 
-		const DOTS = "...";
 		/*
-            Case 2: No left dots to show, but rights dots to be shown
-        */
+    	Case 2: No left dots to show, but rights dots to be shown
+    */
 		if (!shouldShowLeftDots && shouldShowRightDots) {
 			let leftItemCount = 3 + 2 * siblingCount;
 			let leftRange = range(1, leftItemCount);

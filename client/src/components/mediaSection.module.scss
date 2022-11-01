@@ -18,6 +18,12 @@
 	border-radius: 0.8rem;
 }
 
+.pagination_wrapper {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+}
+
 // 375 -480px
 @media (max-width: 30em) {
 	.section_title {

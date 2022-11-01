@@ -7,17 +7,27 @@ import styles from "./movies.module.scss";
 
 const Movies: React.FC = () => {
 	const {
-		state: { week_trending, top_rated_movies, upcoming_movies },
+		state: { week_trending, top_rated_movies, upcoming_movies, week_trending_page, top_rated_page, top_upcoming_page },
 	} = useGeneralContext();
 
 	return (
 		<section className={styles.movies}>
 			<Navigation />
 			<div className={styles.wrapper}>
-				<SearchBar label="Search for movies" path={"home"} />
-				<MediaSection action={ActionTypes.FETCH_WEEK_TRENDING} path="/movies/week-trending" section_title="Weekly trending movies or TV series" data={week_trending} />
-				<MediaSection action={ActionTypes.FETCH_TOP_RATED_MOVIES} path="/movies/top-rated/3" section_title="Top rated movies" data={top_rated_movies} />
-				<MediaSection action={ActionTypes.FETCH_TOP_UPCOMING} path="/movies/upcoming/1" section_title="Upcoming movies" data={upcoming_movies} />
+				<MediaSection
+					action={ActionTypes.FETCH_TOP_RATED_MOVIES}
+					path={`/movies/top-rated/${top_rated_page}`}
+					section_title="Top rated movies"
+					data={top_rated_movies}
+					page={top_rated_page}
+				/>
+				<MediaSection
+					action={ActionTypes.FETCH_TOP_UPCOMING}
+					path={`/movies/upcoming/${top_upcoming_page}`}
+					section_title="Upcoming movies"
+					data={upcoming_movies}
+					page={top_upcoming_page}
+				/>
 			</div>
 		</section>
 	);

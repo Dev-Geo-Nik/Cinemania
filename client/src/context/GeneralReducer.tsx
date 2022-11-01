@@ -26,21 +26,42 @@ export const reducer: ReducerType = (state, action) => {
 				...state,
 				week_trending: action.payload,
 			};
+		case ActionTypes.UPDATE_WEEK_TRENDING:
+			return {
+				...state,
+				week_trending_page: action.payload,
+			};
 		case ActionTypes.FETCH_TRENDING_PEOPLE:
 			return {
 				...state,
 				trending_people: action.payload,
+			};
+		case ActionTypes.UPDATE_TRENDING_PEOPLE:
+			return {
+				...state,
+				actors_page: action.payload,
 			};
 		case ActionTypes.FETCH_TOP_RATED_MOVIES:
 			return {
 				...state,
 				top_rated_movies: action.payload,
 			};
+		case ActionTypes.UPDATE_TOP_RATED_MOVIES:
+			return {
+				...state,
+				top_rated_page: action.payload,
+			};
 		case ActionTypes.FETCH_TOP_UPCOMING:
 			return {
 				...state,
 				upcoming_movies: action.payload,
 			};
+		case ActionTypes.UPDATE_TOP_UPCOMING:
+			return {
+				...state,
+				top_upcoming_page: action.payload,
+			};
+
 		case ActionTypes.UPDATE_FILTER_SEARCH:
 			if (action.payload.searchPath === "movies") {
 				return {

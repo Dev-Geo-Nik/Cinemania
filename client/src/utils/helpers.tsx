@@ -52,6 +52,8 @@ export const findActionTypeForUpdate = (actionCategory: string) => {
 		UPDATE_TOP_RATED_MOVIES,
 		FETCH_TOP_UPCOMING,
 		UPDATE_TOP_UPCOMING,
+		UPDATE_MOVIES_PLAYING_NOW,
+		FETCH_MOVIES_PLAYING_NOW,
 	} = ActionTypes;
 
 	switch (actionCategory) {
@@ -64,6 +66,8 @@ export const findActionTypeForUpdate = (actionCategory: string) => {
 			return UPDATE_TOP_RATED_MOVIES;
 		case FETCH_TOP_UPCOMING:
 			return UPDATE_TOP_UPCOMING;
+		case FETCH_MOVIES_PLAYING_NOW:
+			return UPDATE_MOVIES_PLAYING_NOW;
 
 		default:
 			return "";

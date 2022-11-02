@@ -47,6 +47,11 @@
 }
 .trending_image {
 }
+
+.genre {
+	font-weight: 300;
+	color: var(--clr-sub-title);
+}
 // / 760px 1024px
 @media (max-width: 64em) {
 	.single_container {

@@ -53,7 +53,6 @@ const TrendingPeople: React.FC = () => {
 	} = useGeneralContext();
 
 	let displayRecommendedMovies;
-	console.log(actors_page);
 
 	useEffect(() => {
 		const asyncFetch = async () => {
@@ -91,7 +90,9 @@ const TrendingPeople: React.FC = () => {
 		<section className={styles.trending_people}>
 			<h2 className={styles.section_title}>Daily trending cinema personalities </h2>
 			<div className={styles.trending_wrapper}>{displayRecommendedMovies}</div>
-			<Pagination maxPages={150} action={ActionTypes.FETCH_TRENDING_PEOPLE} />
+			<div className={styles.pagination_wrapper}>
+				<Pagination maxPages={150} action={ActionTypes.FETCH_TRENDING_PEOPLE} />
+			</div>
 		</section>
 	);
 };

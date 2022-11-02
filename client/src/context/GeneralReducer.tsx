@@ -26,6 +26,16 @@ export const reducer: ReducerType = (state, action) => {
 				...state,
 				week_trending: action.payload,
 			};
+		case ActionTypes.FETCH_MOVIES_PLAYING_NOW:
+			return {
+				...state,
+				movies_playing_now: action.payload,
+			};
+		case ActionTypes.UPDATE_MOVIES_PLAYING_NOW:
+			return {
+				...state,
+				movies_playing_now_page: action.payload,
+			};
 		case ActionTypes.UPDATE_WEEK_TRENDING:
 			return {
 				...state,
@@ -60,6 +70,16 @@ export const reducer: ReducerType = (state, action) => {
 			return {
 				...state,
 				top_upcoming_page: action.payload,
+			};
+		case ActionTypes.FETCH_ALL_MOVIES_GENRES:
+			return {
+				...state,
+				movies_genres: action.payload,
+			};
+		case ActionTypes.FETCH_SINGLE_MOVIE:
+			return {
+				...state,
+				single_movie: action.payload,
 			};
 
 		case ActionTypes.UPDATE_FILTER_SEARCH:

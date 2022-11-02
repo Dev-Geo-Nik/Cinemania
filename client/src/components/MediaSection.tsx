@@ -30,7 +30,7 @@ const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page
 				if (res.status >= 200 && res.status < 300) {
 					const responseData = await res.json();
 					if (responseData) {
-						console.log(responseData);
+						// console.log(responseData);
 						dispatch({ type: action, payload: responseData.results });
 					}
 				}

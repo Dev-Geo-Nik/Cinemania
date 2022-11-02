@@ -40,7 +40,7 @@ export interface Show {
 
 const Trending: React.FC = () => {
 	const {
-		state: { homeFilter, BACKEND_URL },
+		state: { homeFilter, BACKEND_URL, movies_genres },
 	} = useGeneralContext();
 
 	const [trendingArray, setTrendingArray] = useState<any>([]);
@@ -78,6 +78,15 @@ const Trending: React.FC = () => {
 			const { title, id, genre_ids, media_type, overview, popularity, vote_average, name, release_date, poster_path, first_air_date } = show;
 			const rating = +vote_average.toFixed(1) * 10;
 
+			let genre;
+			if (movies_genres) {
+				genre = movies_genres.filter((a: any) => {
+					// console.log(a)
+					if (a.id === genre_ids[0]) {
+						return a.name;
+					}
+				});
+			}
 			return (
 				<div key={id} className={styles.single_container}>
 					<Bookmark isBookmarked={false} />
@@ -85,6 +94,7 @@ const Trending: React.FC = () => {
 						<Rating rating={rating} />
 					</div>
 					<LazyLoadImage alt={""} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.trending_image} />
+					<p className={styles.movie_title}>{name ? name : title}</p>
 					<div className={styles.movie_detail_container}>
 						<p className={styles.year}>{release_date ? release_date : first_air_date}</p>
 						<li className={styles.list_item}></li>
@@ -93,7 +103,7 @@ const Trending: React.FC = () => {
 							<span className={styles.movie_text}>{media_type}</span>
 						</span>
 					</div>
-					<p className={styles.movie_title}>{name ? name : title}</p>
+					<p className={styles.genre}>Genre: {genre[0] ? (genre[0]["name"] ? genre[0]["name"] : "Unknown") : "Unknown"}</p>
 				</div>
 			);
 		});

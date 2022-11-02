@@ -4,11 +4,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // local
 import Home from "./pages/home/Home";
 import "./assets/css/index.scss";
-import Media from "./pages/dynamic/media/Media";
 import Bookmarked from "./pages/Bookmarked";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
-import Movies from "./pages/home/movies/Movies";
+import Movies from "./pages/movies/Movies";
+import Series from "./pages/series/Series";
+import SingleMoviePage from "./pages/dynamic/singleMoviePage/SingleMoviePage";
 
 const Router: React.FC = () => {
 	return (
@@ -20,7 +21,9 @@ const Router: React.FC = () => {
 
 					<Route path="/user/login" element={<Login />} />
 					{/* <Route path="/media/:category" element={<Media />} /> */}
+					<Route path="/media/movie/:id" element={<SingleMoviePage />} />
 					<Route path="/media/movies" element={<Movies />} />
+					<Route path="/media/series" element={<Series />} />
 					<Route path="/media/bookmarked" element={<Bookmarked />} />
 
 					<Route path="*" element={<div>Error</div>} />

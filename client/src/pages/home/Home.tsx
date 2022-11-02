@@ -9,7 +9,6 @@ import TrendingPeople from "./components/TrendingPeople";
 import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
-	// console.log("loading");
 	const {
 		state: { week_trending, week_trending_page },
 	} = useGeneralContext();

@@ -86,6 +86,7 @@
 	// bottom: 10%;
 	// left: 5%;
 	// width: 20rem;
+
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -98,6 +99,11 @@
 	top: -7%;
 	width: 5rem;
 	z-index: 2;
+}
+
+.genre {
+	font-weight: 300;
+	color: var(--clr-sub-title);
 }
 
 // / 760px 1024px

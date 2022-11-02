@@ -3,6 +3,8 @@ import styles from "./singleCard.module.scss";
 import { MdLocalMovies, MdLiveTv } from "react-icons/md";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Rating from "./Rating";
+import { useGeneralContext } from "../context/GeneralContext";
+import { Link } from "react-router-dom";
 
 interface Props {
 	media: Result;
@@ -39,6 +41,10 @@ export interface Result {
 
 const SingleCard: React.FC<Props> = ({ media }) => {
 	const {
+		state: { movies_genres },
+	} = useGeneralContext();
+
+	const {
 		id,
 		backdrop_path,
 		adult,
@@ -56,16 +62,29 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 		release_date,
 		first_air_date,
 	} = media;
+	// console.log(genre_ids[0]);
 	const rating = +vote_average.toFixed(1) * 10;
+
+	let genre;
+	if (movies_genres) {
+		genre = movies_genres.filter((a: any) => {
+			// console.log(a)
+			if (a.id === genre_ids[0]) {
+				return a.name;
+			}
+		});
+	}
+
 	return (
-		<div key={id} className={styles.single_container}>
+		<Link to={`/media/movie/${id}`} key={id} className={styles.single_container}>
 			<Bookmark isBookmarked={false} />
 			<div className={styles.rating_wrapper}>
 				<Rating rating={rating} />
 			</div>
 			<div className={styles.image_wrapper}>
-				<LazyLoadImage alt={""} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.trending_image} />
+				<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.trending_image} />
 			</div>
+			<p className={styles.movie_title}>{name ? name : title}</p>
 			<div className={styles.detail_container}>
 				<p className={styles.year}>{release_date ? release_date : first_air_date}</p>
 				<li className={styles.list_item}></li>
@@ -74,8 +93,8 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 					<span className={styles.movie_text}>{media_type}</span>
 				</span>
 			</div>
-			<p className={styles.movie_title}>{name ? name : title}</p>
-		</div>
+			<p className={styles.genre}>Genre: {genre[0] ? (genre[0]["name"] ? genre[0]["name"] : "Unknown") : "Unknown"}</p>
+		</Link>
 	);
 };
 

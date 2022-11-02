@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
-import { Action } from "./Actions";
+import { Action, Genres } from "./Actions";
 import { reducer } from "./GeneralReducer";
 export interface GeneralContextState {
 	allData: any;
@@ -21,6 +21,10 @@ export interface GeneralContextState {
 	week_trending_page: number;
 	top_rated_page: number;
 	top_upcoming_page: number;
+	movies_playing_now_page: number;
+	movies_playing_now: any;
+	movies_genres: any;
+	single_movie: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -42,6 +46,10 @@ const initialState: GeneralContextState = {
 	week_trending_page: 1,
 	top_rated_page: 1,
 	top_upcoming_page: 1,
+	movies_playing_now: [],
+	movies_playing_now_page: 1,
+	movies_genres: [],
+	single_movie: null,
 };
 
 type ContextHook = () => {

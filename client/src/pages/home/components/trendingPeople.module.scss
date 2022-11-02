@@ -62,6 +62,12 @@
 	// margin: 1rem 0;
 }
 
+.pagination_wrapper {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+}
+
 // / 760px 1024px
 @media (max-width: 64em) {
 	.single_container {

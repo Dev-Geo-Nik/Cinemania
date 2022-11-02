@@ -18,8 +18,7 @@ const Pagination: React.FC<Props> = ({ maxPages, action }) => {
 		dispatch,
 	} = useGeneralContext();
 	const pageNumberLimit = 5;
-	// const [passengersData, setData] = useState([]);
-	// const [loading, setLoading] = useState(true);
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const [maxPageLimit, setMaxPageLimit] = useState(5);
 	const [minPageLimit, setMinPageLimit] = useState(0);
@@ -32,10 +31,10 @@ const Pagination: React.FC<Props> = ({ maxPages, action }) => {
 	}
 
 	useEffect(() => {
-		console.log(action);
 		const actionType = findActionTypeForUpdate(action);
 
 		if (requestNewPage) {
+			console.log(action);
 			// @ts-ignore
 			dispatch({ type: actionType, payload: currentPage });
 			setRequestNewPage(false);

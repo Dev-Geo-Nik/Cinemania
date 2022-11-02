@@ -11,6 +11,10 @@ export enum ActionTypes {
 	UPDATE_WEEK_TRENDING = "UPDATE_WEEK_TRENDING",
 	UPDATE_TOP_RATED_MOVIES = "UPDATE_TOP_RATED_MOVIES",
 	UPDATE_TOP_UPCOMING = "UPDATE_TOP_UPCOMING",
+	FETCH_MOVIES_PLAYING_NOW = "FETCH_MOVIES_PLAYING_NOW",
+	UPDATE_MOVIES_PLAYING_NOW = "UPDATE_MOVIES_PLAYING_NOW",
+	FETCH_ALL_MOVIES_GENRES = "FETCH_ALL_MOVIES_GENRES",
+	FETCH_SINGLE_MOVIE = "FETCH_SINGLE_MOVIE",
 }
 
 export enum PayloadTypes {}
@@ -18,4 +22,13 @@ export enum PayloadTypes {}
 export interface Action {
 	type: ActionTypes;
 	payload?: any;
+}
+
+export interface Genres {
+	genres: Genre[];
+}
+
+export interface Genre {
+	id: number;
+	name: string;
 }

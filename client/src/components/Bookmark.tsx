@@ -2,7 +2,7 @@ import styles from "./bookmarkSave.module.scss";
 import { MdBookmark, MdOutlineBookmarkBorder } from "react-icons/md";
 
 interface Props {
-	isBookmarked: boolean;
+	isBookmarked?: boolean;
 }
 
 const Bookmark: React.FC<Props> = ({ isBookmarked }) => {

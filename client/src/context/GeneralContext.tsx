@@ -1,6 +1,8 @@
 import React, { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
+import { MovieProps } from "../pages/dynamic/singleMoviePage/SingleMoviePage";
 import { Action, Genres } from "./Actions";
 import { reducer } from "./GeneralReducer";
+
 export interface GeneralContextState {
 	allData: any;
 	movies: any;
@@ -24,7 +26,7 @@ export interface GeneralContextState {
 	movies_playing_now_page: number;
 	movies_playing_now: any;
 	movies_genres: any;
-	single_movie: any;
+	single_movie: MovieProps | null;
 }
 const initialState: GeneralContextState = {
 	allData: [],

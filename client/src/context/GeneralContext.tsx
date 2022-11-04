@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
-import { MovieProps } from "../pages/dynamic/singleMoviePage/SingleMoviePage";
+import { MovieProps } from "../utils/types";
+
 import { Action, Genres } from "./Actions";
 import { reducer } from "./GeneralReducer";
 
@@ -27,6 +28,7 @@ export interface GeneralContextState {
 	movies_playing_now: any;
 	movies_genres: any;
 	single_movie: MovieProps | null;
+	movie_cast: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -52,6 +54,7 @@ const initialState: GeneralContextState = {
 	movies_playing_now_page: 1,
 	movies_genres: [],
 	single_movie: null,
+	movie_cast: [],
 };
 
 type ContextHook = () => {

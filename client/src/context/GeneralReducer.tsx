@@ -51,6 +51,11 @@ export const reducer: ReducerType = (state, action) => {
 				...state,
 				actors_page: action.payload,
 			};
+		case ActionTypes.FETCH_CAST_MOVIE:
+			return {
+				...state,
+				movie_cast: action.payload,
+			};
 		case ActionTypes.FETCH_TOP_RATED_MOVIES:
 			return {
 				...state,

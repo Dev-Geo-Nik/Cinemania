@@ -1,70 +1,20 @@
-import { useEffect } from "react";
+// Libraries
+
+import { Link, useLocation } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useLocation } from "react-router-dom";
+
+// Local
+import { useEffect, useState } from "react";
 import Bookmark from "../../../components/Bookmark";
+import ButtonRegister from "../../../components/ButtonRegister";
 import Navigation from "../../../components/Navigation";
 import Rating from "../../../components/Rating";
 import { ActionTypes } from "../../../context/Actions";
 import { useGeneralContext } from "../../../context/GeneralContext";
+import Cast from "./components/Cast";
 import styles from "./singleMoviePage.module.scss";
-
-export interface MovieProps {
-	adult: boolean;
-	backdrop_path: string;
-	belongs_to_collection: BelongsToCollection;
-	budget: number;
-	genres: Genre[];
-	homepage: string;
-	id: number;
-	imdb_id: string;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	popularity: number;
-	poster_path: string;
-	production_companies: ProductionCompany[];
-	production_countries: ProductionCountry[];
-	release_date: string;
-	revenue: number;
-	runtime: number;
-	spoken_languages: SpokenLanguage[];
-	status: string;
-	tagline: string;
-	title: string;
-	video: boolean;
-	vote_average: number;
-	vote_count: number;
-}
-
-export interface BelongsToCollection {
-	id: number;
-	name: string;
-	poster_path: string;
-	backdrop_path: string;
-}
-
-export interface Genre {
-	id: number;
-	name: string;
-}
-
-export interface ProductionCompany {
-	id: number;
-	logo_path: string;
-	name: string;
-	origin_country: string;
-}
-
-export interface ProductionCountry {
-	iso_3166_1: string;
-	name: string;
-}
-
-export interface SpokenLanguage {
-	english_name: string;
-	iso_639_1: string;
-	name: string;
-}
+import { MovieProps } from "../../../utils/types";
+import Trailer from "./components/Trailer";
 
 const SingleMoviePage: React.FC = () => {
 	const { pathname } = useLocation();
@@ -72,7 +22,7 @@ const SingleMoviePage: React.FC = () => {
 		state: { BACKEND_URL, single_movie },
 		dispatch,
 	} = useGeneralContext();
-
+	const [error, setError] = useState(false);
 	const movie_id = pathname.split("/")[3];
 
 	useEffect(() => {
@@ -82,64 +32,100 @@ const SingleMoviePage: React.FC = () => {
 				const res = await fetch(`${BACKEND_URL}/movies/movie/${movie_id}`);
 				if (res.status >= 200 && res.status < 300) {
 					const responseData = await res.json();
+					if (responseData.status_code) {
+						setError(true);
+						return;
+					}
 					if (responseData) {
 						dispatch({ type: ActionTypes.FETCH_SINGLE_MOVIE, payload: responseData });
 					}
 				}
-			} catch (err: any) {}
+			} catch (err: any) {
+				setError(true);
+				return;
+			}
 		};
 		asyncFetch();
 	}, []);
 
 	let header;
 	if (single_movie) {
-		const { backdrop_path, title, poster_path, tagline, overview, popularity, release_date, genres, vote_average, runtime } = single_movie as MovieProps;
-
-		const rating = +vote_average.toFixed(0) * 10;
+		const { id, backdrop_path, title, poster_path, tagline, overview, release_date, genres, vote_average, runtime, budget, revenue, homepage, original_language } =
+			single_movie as MovieProps;
+		const rating = vote_average ? +vote_average.toFixed(0) * 10 : 10;
 		const duration = +runtime / 60;
 		const x = duration.toFixed(2).toString();
-		const displayGenres = genres.map((genre: any) => {
-			return (
-				<span className={styles.genre_tag} key={genre.id}>
-					{genre.name}
-				</span>
-			);
-		});
+
+		const displayGenres = genres
+			? genres.map((genre: any) => {
+					return (
+						<span className={styles.genre_tag} key={genre.id}>
+							{genre.name}
+						</span>
+					);
+			  })
+			: null;
 		header = (
-			<div className={styles.header}>
-				<Bookmark />
-				<img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} className={styles.background_image} alt={title} />
-				<div className={styles.content}>
-					<div className={styles.image_wrapper}>
-						<div className={styles.rating_wrapper}>
-							<Rating rating={rating} />
+			<>
+				<div className={styles.header}>
+					<Bookmark />
+					<img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} className={styles.background_image} alt={title} />
+					<div className={styles.content}>
+						<div className={styles.image_wrapper}>
+							<div className={styles.rating_wrapper}>
+								<Rating rating={rating} />
+							</div>
+							<LazyLoadImage alt={title} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.poster_image} />
 						</div>
-						<LazyLoadImage alt={title} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.poster_image} />
-					</div>
-					<div className={styles.text_container}>
-						<h2 className={styles.movie_title}>{title}</h2>
-						<p className={styles.tagline}>{tagline}</p>
-						<h3 className={styles.overview_title}>Overview</h3>
-						<p className={styles.overview_text}>{overview}</p>
-						<p className={styles.release_date}>
-							Release date: <span>{release_date}</span>
-						</p>
-						<p className={styles.genres}>
-							Genres: <span>{displayGenres}</span>
-						</p>
-						<p className={styles.movie_time}>
-							Duration : <span>{`${x[0]}h : ${x[2]}${x[3]}m`}</span>
-						</p>
+						<div className={styles.text_container}>
+							<h2 className={styles.movie_title}>{title && title}</h2>
+							<p className={styles.tagline}>{tagline && tagline}</p>
+							<h3 className={styles.overview_title}>Overview</h3>
+							<p className={styles.overview_text}>{overview && overview}</p>
+							<p className={styles.release_date}>
+								Release date: <span>{release_date && release_date}</span>
+							</p>
+							<p className={styles.genres}>
+								Genres: <span>{displayGenres}</span>
+							</p>
+							<p className={styles.movie_time}>
+								Duration : <span>{x && `${x[0]}h : ${x[2]}${x[3]}m`}</span>
+							</p>
+							<p className={styles.budget}>
+								Budget : <span>{budget.toLocaleString() === "0" ? "Unknown" : budget.toLocaleString()}</span>
+							</p>
+							<p className={styles.revenue}>
+								Revenue : <span>{revenue.toLocaleString() === "0" ? "Unknown" : revenue.toLocaleString()}</span>
+							</p>
+							<p className={styles.language}>
+								Original language : <span>{original_language && original_language}</span>
+							</p>
+
+							<a className={styles.website} href={homepage} target="_blank">
+								Website : <span>{homepage ? homepage : "Unknown"}</span>
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
+				<Cast />
+				<Trailer />
+			</>
 		);
 	}
+
+	let errorModal = (
+		<div className={styles.error_message_container}>
+			<p className={styles.error_message}>The resource you requested could not be found</p>
+			<Link to="/">
+				<ButtonRegister text="Home" />
+			</Link>
+		</div>
+	);
 
 	return (
 		<section className={styles.single_movie_container}>
 			<Navigation />
-			<div className={styles.wrapper}>{header}</div>
+			<div className={styles.wrapper}>{error ? <>{errorModal}</> : <>{header}</>}</div>
 		</section>
 	);
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (url: string, options: any = null) => {
+export const useFetch = (url: string, options: any = null, dependencies: any) => {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ export const useFetch = (url: string, options: any = null) => {
 			}
 		};
 		asyncFetch();
-	}, [url]);
+	}, [dependencies]);
 
 	return { data, error, loading };
 };

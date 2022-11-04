@@ -34,7 +34,6 @@ const Pagination: React.FC<Props> = ({ maxPages, action }) => {
 		const actionType = findActionTypeForUpdate(action);
 
 		if (requestNewPage) {
-			console.log(action);
 			// @ts-ignore
 			dispatch({ type: actionType, payload: currentPage });
 			setRequestNewPage(false);

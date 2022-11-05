@@ -1,0 +1,18 @@
+.similar_movies {
+	margin-top: 5rem;
+}
+
+.section_title {
+	padding-left: 3rem;
+}
+
+.link {
+	display: flex;
+}
+.wrapper {
+	padding: 4rem 3rem 3rem 3rem;
+	display: grid;
+	grid-auto-flow: column;
+	gap: 0;
+	overflow-x: auto;
+}

@@ -84,7 +84,20 @@ export const reducer: ReducerType = (state, action) => {
 		case ActionTypes.FETCH_SINGLE_MOVIE:
 			return {
 				...state,
-				single_movie: action.payload,
+				single_movie: action.payload.single_movie,
+				movie_cast: action.payload.cast,
+				single_movie_id: action.payload.single_movie.id,
+				single_recommended_movies: action.payload.similar_movies_data,
+			};
+		case ActionTypes.FETCH_SINGLE_RECOMMENDED_MOVIES:
+			return {
+				...state,
+				single_recommended_movies: action.payload,
+			};
+		case ActionTypes.UPDATE_SINGLE_MOVIE_ID:
+			return {
+				...state,
+				single_movie_id: action.payload,
 			};
 
 		case ActionTypes.UPDATE_FILTER_SEARCH:

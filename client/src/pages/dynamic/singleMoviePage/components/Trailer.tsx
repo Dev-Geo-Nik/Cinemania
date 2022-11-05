@@ -10,23 +10,30 @@ const Trailer: React.FC<Props> = ({}) => {
 	const {
 		state: { BACKEND_URL, single_movie },
 	} = useGeneralContext();
-	console.log();
+
 	const url = `${BACKEND_URL}/movies/movie/trailer-list/${single_movie?.id}`;
 	const { data, error } = useFetch(url, {}, url);
 
 	let displayVideo;
-
 	if (data != null) {
-		// console.log();
-		displayVideo = (
-			<div className={styles.video_container}>
-				{/* @ts-ignore */}
-				<ReactPlayer url={`https://www.youtube.com/watch?v=${data.results[1]["key"]}`} controls={true} className={styles.player} />
-			</div>
-		);
+		//  @ts-ignore
+		if (data.results[0] != undefined) {
+			displayVideo = (
+				<div className={styles.video_container}>
+					{/* @ts-ignore */}
+					<ReactPlayer url={`https://www.youtube.com/watch?v=${data.results[0]["key"]}`} controls={true} className={styles.player} />
+				</div>
+			);
+		}
 	}
 
-	return <div className={styles.trailer}>{displayVideo}</div>;
+	return (
+		<div className={styles.trailer}>
+			{/* @ts-ignore */}
+			<h2 className={styles.section_title}>{data != null ? (data.results ? "Movie trailer" : null) : null}</h2>
+			{displayVideo}
+		</div>
+	);
 };
 
 export default Trailer;

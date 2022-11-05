@@ -44,7 +44,7 @@
 
 .buttons {
 	width: 4rem;
-	// color: blue;
+
 	cursor: pointer;
 	transition: all 0.5s ease-in-out;
 	border: 1px solid #fff;
@@ -53,4 +53,21 @@
 .buttons:hover {
 	background-color: #5a698f;
 	color: #fff;
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.list_item {
+		width: 3rem;
+	}
+	.ellipses_dots {
+		width: 3rem;
+	}
+	.buttons {
+		width: 3rem;
+	}
 }

@@ -29,6 +29,8 @@ export interface GeneralContextState {
 	movies_genres: any;
 	single_movie: MovieProps | null;
 	movie_cast: any;
+	single_movie_id: number;
+	single_recommended_movies: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -55,6 +57,8 @@ const initialState: GeneralContextState = {
 	movies_genres: [],
 	single_movie: null,
 	movie_cast: [],
+	single_movie_id: 0,
+	single_recommended_movies: [],
 };
 
 type ContextHook = () => {

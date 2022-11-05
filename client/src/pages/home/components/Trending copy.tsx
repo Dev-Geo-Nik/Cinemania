@@ -43,6 +43,16 @@ const Trending: React.FC = () => {
 		state: { homeFilter, BACKEND_URL, movies_genres },
 	} = useGeneralContext();
 
+	const [trendingArray, setTrendingArray] = useState<any>([]);
+	const [arrayIndexes, setArrayIndexes] = useState({
+		index0: 0,
+		index1: 1,
+		index2: 2,
+		index3: 3,
+		index4: 4,
+		arrayMaxLength: 0,
+	});
+
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {

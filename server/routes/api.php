@@ -28,6 +28,16 @@ Route::post('user/register', [AuthController::class, 'register']);
 
 
 Route::get('/movies/trending', [MoviesDatabase::class, 'trending']);
+Route::get('/movies/genres', [MoviesDatabase::class, 'get_genres']);
+Route::get('/movies/week-trending/{page}', [MoviesDatabase::class, 'week_trending']);
+Route::get('/movies/trending-daily-persons/{page}', [MoviesDatabase::class, 'day_trending_people']);
+Route::get('/movies/top-rated/{page}', [MoviesDatabase::class, 'top_rated_movies']);
+Route::get('/movies/upcoming/{page}', [MoviesDatabase::class, 'upcoming_movies']);
+Route::get('/movies/playing-now/{page}', [MoviesDatabase::class, 'now_playing_movies']);
+Route::get('/movies/movie/{id}', [MoviesDatabase::class, 'get_movie']);
+Route::get('/movies/movie/cast/{id}', [MoviesDatabase::class, 'get_cast']);
+Route::get('/movies/movie/trailer-list/{id}', [MoviesDatabase::class, 'get_list_of_trailers']);
+Route::get('/movies/movie/similar-movies/{id}', [MoviesDatabase::class, 'get_list_of_similar_movies']);
 
 
 

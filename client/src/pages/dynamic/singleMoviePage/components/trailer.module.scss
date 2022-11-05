@@ -1,12 +1,36 @@
 .trailer {
 	width: 100%;
-	background-color: red;
+	// background-color: red;
+	height: 50vh;
 }
 
 .video_container {
-	width: 100%;
+	// width: 100%;
+	// height: 100%;
+	// background-color: black;
+	display: flex;
+	justify-content: flex-start;
+	padding: 3rem 0 3rem 3rem;
+}
+
+.section_title {
+	padding: 3rem 0 0 3rem;
 }
 
 .player {
-	width: 100%;
+	// width: 100%;
+	// height: 100%;
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.video_container {
+		display: flex;
+		justify-content: flex-start;
+		padding: 2rem 0 2rem 0;
+	}
 }

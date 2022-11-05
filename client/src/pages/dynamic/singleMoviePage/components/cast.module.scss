@@ -16,6 +16,7 @@
 	// grid-template-columns: repeat(14rem, 1fr);
 	gap: 1.5rem;
 	overflow-x: auto;
+	padding-bottom: 3rem;
 }
 
 .actor_container {
@@ -56,4 +57,12 @@
 	font-weight: 300;
 	color: var(--clr-sub-title);
 	padding-left: 1rem;
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+}
+
+// 375 -480px
+@media (max-width: 30em) {
 }

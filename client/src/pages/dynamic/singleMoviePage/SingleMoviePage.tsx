@@ -15,11 +15,12 @@ import Cast from "./components/Cast";
 import styles from "./singleMoviePage.module.scss";
 import { MovieProps } from "../../../utils/types";
 import Trailer from "./components/Trailer";
+import SimilarMovies from "./components/SimilarMovies";
 
 const SingleMoviePage: React.FC = () => {
 	const { pathname } = useLocation();
 	const {
-		state: { BACKEND_URL, single_movie },
+		state: { BACKEND_URL, single_movie, single_movie_id },
 		dispatch,
 	} = useGeneralContext();
 	const [error, setError] = useState(false);
@@ -31,13 +32,25 @@ const SingleMoviePage: React.FC = () => {
 			try {
 				const res = await fetch(`${BACKEND_URL}/movies/movie/${movie_id}`);
 				if (res.status >= 200 && res.status < 300) {
-					const responseData = await res.json();
-					if (responseData.status_code) {
+					const response_data = await res.json();
+					if (response_data.status_message) {
 						setError(true);
 						return;
 					}
-					if (responseData) {
-						dispatch({ type: ActionTypes.FETCH_SINGLE_MOVIE, payload: responseData });
+
+					if (response_data) {
+						const cast_data_req = await fetch(`${BACKEND_URL}/movies/movie/cast/${response_data?.id}`);
+						const similar_movies_req = await fetch(`${BACKEND_URL}/movies/movie/similar-movies/${response_data?.id}`);
+
+						if (cast_data_req.status >= 200 && cast_data_req.status < 300 && similar_movies_req.status >= 200 && similar_movies_req.status < 300) {
+							const cast_data = await cast_data_req.json();
+							const similar_movies = await similar_movies_req.json();
+							if (similar_movies.status_message || cast_data.status_message) {
+								setError(true);
+								return;
+							}
+							dispatch({ type: ActionTypes.FETCH_SINGLE_MOVIE, payload: { single_movie: response_data, similar_movies_data: similar_movies, cast: cast_data } });
+						}
 					}
 				}
 			} catch (err: any) {
@@ -46,7 +59,7 @@ const SingleMoviePage: React.FC = () => {
 			}
 		};
 		asyncFetch();
-	}, []);
+	}, [single_movie_id]);
 
 	let header;
 	if (single_movie) {
@@ -68,7 +81,9 @@ const SingleMoviePage: React.FC = () => {
 		header = (
 			<>
 				<div className={styles.header}>
-					<Bookmark />
+					<div className={styles.bookmark_wrapper}>
+						<Bookmark />
+					</div>
 					<img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} className={styles.background_image} alt={title} />
 					<div className={styles.content}>
 						<div className={styles.image_wrapper}>
@@ -109,6 +124,7 @@ const SingleMoviePage: React.FC = () => {
 				</div>
 				<Cast />
 				<Trailer />
+				<SimilarMovies />
 			</>
 		);
 	}

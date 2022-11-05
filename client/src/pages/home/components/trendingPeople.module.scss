@@ -2,6 +2,7 @@
 	padding-top: 4rem;
 
 	position: relative;
+	padding-bottom: 8rem;
 }
 
 .section_title {
@@ -80,6 +81,9 @@
 	.single_container {
 		width: 16rem;
 		margin: 0 1.4rem 1.4rem 0;
+	}
+	.section_title {
+		font-size: var(--fs-800-s);
 	}
 
 	.person_title {

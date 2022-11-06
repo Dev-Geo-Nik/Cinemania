@@ -13,7 +13,7 @@ class MoviesDatabase extends BaseController
     {
         $api_key = env("MOVIES_DB_API_KEY");
 
-        return Http::get("https://api.themoviedb.org/3/trending/all/day?api_key=$api_key");
+        return Http::get("https://api.themoviedb.org/3/trending/movie/day?api_key=$api_key&total_results=5");
     }
     public function get_genres()
     {
@@ -25,13 +25,12 @@ class MoviesDatabase extends BaseController
     {
         $api_key = env("MOVIES_DB_API_KEY");
 
-        return Http::get("https://api.themoviedb.org/3/trending/all/week?api_key=$api_key&language=en-US&page=$page");
+        return Http::get("https://api.themoviedb.org/3/trending/movie/week?api_key=$api_key&language=en-US&page=$page");
     }
     public function day_trending_people($page)
     {
         $api_key = env("MOVIES_DB_API_KEY");
 
-        // return Http::get("https://api.themoviedb.org/3/trending/person/week?api_key=$api_key");
         return Http::get("https://api.themoviedb.org/3/trending/person/day?api_key=$api_key&language=en-US&page=$page");
     }
     public function top_rated_movies($page)
@@ -91,6 +90,34 @@ class MoviesDatabase extends BaseController
 
         return Http::get(
             "https://api.themoviedb.org/3/movie/{$id}/similar?api_key=$api_key&language=en-US&page=1"
+
+
+        );
+    }
+    public function get_person_details($id)
+    {
+        $api_key = env("MOVIES_DB_API_KEY");
+
+        return Http::get(
+            "https://api.themoviedb.org/3/person/{$id}?api_key=$api_key&language=en-US"
+
+        );
+    }
+    public function get_known_for($id)
+    {
+        $api_key = env("MOVIES_DB_API_KEY");
+
+        return Http::get(
+            "https://api.themoviedb.org/3/person/{$id}/movie_credits?api_key=$api_key&language=en-US"
+
+        );
+    }
+    public function get_social_links($id)
+    {
+        $api_key = env("MOVIES_DB_API_KEY");
+
+        return Http::get(
+            "https://api.themoviedb.org/3/person/{$id}/external_ids?api_key=$api_key&language=en-US"
 
 
         );

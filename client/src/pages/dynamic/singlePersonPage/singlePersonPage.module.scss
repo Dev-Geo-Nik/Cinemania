@@ -1,0 +1,100 @@
+.single_person_container {
+	min-height: 100vh;
+	padding-top: 3.2rem;
+	display: flex;
+	padding-bottom: 8rem;
+
+	// overflow-x: hidden;
+}
+
+.wrapper {
+	width: 100%;
+	margin-left: 3.5rem;
+	// background-color: #fff;
+}
+
+.profile_image {
+	height: 50rem;
+}
+
+.person_container {
+	background-color: #082736d8;
+	// height: 80rem;
+	padding: 3rem 0 3rem 3rem;
+	position: relative;
+}
+
+.bookmark_wrapper {
+	top: 0;
+}
+
+.header {
+	display: flex;
+}
+
+.text_content {
+	margin-left: 3rem;
+}
+.biography_header {
+	margin: 1rem 0;
+}
+
+.biography_text {
+	width: 80%;
+	font-weight: 300;
+	color: var(--clr-sub-title);
+}
+
+.label_container {
+	display: flex;
+	align-items: center;
+	margin: 0.5rem 0;
+}
+
+.label {
+	color: var(--clr-sub-title);
+	margin-right: 1rem;
+}
+
+.label_text {
+	color: #fff;
+}
+
+.social_icons {
+	font-size: 4rem;
+	margin-right: 1.5rem;
+	background-color: #fff;
+}
+
+.facebook_icon {
+	color: #4267b2;
+}
+.instagram_icon {
+	background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.twitter_icon {
+	color: #1da1f2;
+}
+
+.socials_container {
+	padding: 2rem 0;
+}
+// / 760px 1024px
+@media (max-width: 64em) {
+	.single_movie_container {
+		flex-direction: column;
+	}
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.single_person_container {
+		padding: unset;
+		margin: unset;
+		width: 100%;
+	}
+
+	.wrapper {
+		margin-left: 0rem;
+	}
+}

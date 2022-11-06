@@ -16,6 +16,18 @@ export const reducer: ReducerType = (state, action) => {
 				favMovies: action.payload.favMovies,
 				favSeries: action.payload.favSeries,
 			};
+		case ActionTypes.FETCH_TRENDING_DATA:
+			return {
+				...state,
+				trending_movies_series: action.payload,
+			};
+		case ActionTypes.FETCH_SINGLE_PERSON_DATA:
+			return {
+				...state,
+				person_bio: action.payload[0],
+				person_known_for: action.payload[1],
+				person_socials: action.payload[2],
+			};
 		case ActionTypes.TOGGLE_LOADING:
 			return {
 				...state,

@@ -3,7 +3,6 @@ import Navigation from "../../components/Navigation";
 import SearchBar from "../../components/SearchBar";
 import { ActionTypes } from "../../context/Actions";
 import { useGeneralContext } from "../../context/GeneralContext";
-import Recommended from "./components/Recommended";
 import Trending from "./components/Trending";
 import TrendingPeople from "./components/TrendingPeople";
 import styles from "./home.module.scss";
@@ -22,7 +21,7 @@ const Home: React.FC = () => {
 				<MediaSection
 					action={ActionTypes.FETCH_WEEK_TRENDING}
 					path={`/movies/week-trending/${week_trending_page}`}
-					section_title="Weekly trending movies or TV series"
+					section_title="Weekly trending movies"
 					data={week_trending}
 					page={week_trending_page}
 				/>

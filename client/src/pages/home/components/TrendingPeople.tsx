@@ -8,6 +8,7 @@ import Bookmark from "../../../components/Bookmark";
 // Libraries
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Pagination from "../../../components/Pagination";
+import { Link } from "react-router-dom";
 
 // export interface Root {
 // 	page: number;
@@ -73,22 +74,26 @@ const TrendingPeople: React.FC = () => {
 		displayRecommendedMovies = trending_people.map((actor: Person, index: any) => {
 			const { id, name, profile_path, known_for_department } = actor;
 			const imagePath = `https://image.tmdb.org/t/p/original/${profile_path}`;
+
+			if (known_for_department !== "Acting") {
+				return null;
+			}
 			return (
-				<div key={id} className={styles.single_container}>
+				<Link to={`/person/${id}`} key={id} className={styles.single_container}>
 					<Bookmark isBookmarked={false} />
 					<div className={styles.trending_person_image_container}>
 						<LazyLoadImage alt={""} effect="blur" src={imagePath} className={styles.trending_person_image} />
 					</div>
 					<p className={styles.person_title}>{name}</p>
 					<p className={styles.person_profession}>{known_for_department}</p>
-				</div>
+				</Link>
 			);
 		});
 	}
 
 	return (
 		<section className={styles.trending_people}>
-			<h2 className={styles.section_title}>Daily trending cinema personalities </h2>
+			<h2 className={styles.section_title}>Daily trending actors </h2>
 			<div className={styles.trending_wrapper}>{displayRecommendedMovies}</div>
 			<div className={styles.pagination_wrapper}>
 				<Pagination maxPages={150} action={ActionTypes.FETCH_TRENDING_PEOPLE} />

@@ -38,6 +38,9 @@ Route::get('/movies/movie/{id}', [MoviesDatabase::class, 'get_movie']);
 Route::get('/movies/movie/cast/{id}', [MoviesDatabase::class, 'get_cast']);
 Route::get('/movies/movie/trailer-list/{id}', [MoviesDatabase::class, 'get_list_of_trailers']);
 Route::get('/movies/movie/similar-movies/{id}', [MoviesDatabase::class, 'get_list_of_similar_movies']);
+Route::get('/person/{id}', [MoviesDatabase::class, 'get_person_details']);
+Route::get('/person/work/{id}', [MoviesDatabase::class, 'get_known_for']);
+Route::get('/person/socials/{id}', [MoviesDatabase::class, 'get_social_links']);
 
 
 

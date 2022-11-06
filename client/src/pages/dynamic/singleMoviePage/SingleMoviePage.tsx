@@ -23,11 +23,10 @@ const SingleMoviePage: React.FC = () => {
 		state: { BACKEND_URL, single_movie, single_movie_id },
 		dispatch,
 	} = useGeneralContext();
-	const [error, setError] = useState(false);
 	const movie_id = pathname.split("/")[3];
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		// todo make a single reusable function that  error or data not hook so i can use it inside of the top level useEffect
 		const asyncFetch = async () => {
 			try {
 				const res = await fetch(`${BACKEND_URL}/movies/movie/${movie_id}`);
@@ -67,7 +66,7 @@ const SingleMoviePage: React.FC = () => {
 			single_movie as MovieProps;
 		const rating = vote_average ? +vote_average.toFixed(0) * 10 : 10;
 		const duration = +runtime / 60;
-		const x = duration.toFixed(2).toString();
+		const time = duration.toFixed(2).toString();
 
 		const displayGenres = genres
 			? genres.map((genre: any) => {
@@ -104,7 +103,7 @@ const SingleMoviePage: React.FC = () => {
 								Genres: <span>{displayGenres}</span>
 							</p>
 							<p className={styles.movie_time}>
-								Duration : <span>{x && `${x[0]}h : ${x[2]}${x[3]}m`}</span>
+								Duration : <span>{time && `${time[0]}h : ${time[2]}${time[3]}m`}</span>
 							</p>
 							<p className={styles.budget}>
 								Budget : <span>{budget.toLocaleString() === "0" ? "Unknown" : budget.toLocaleString()}</span>

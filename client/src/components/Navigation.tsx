@@ -4,7 +4,7 @@ import Avatar from "../assets/img/avatar.png";
 
 // Libraries
 import { NavLink } from "react-router-dom";
-import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark, MdPersonAddAlt1, MdLogin } from "react-icons/md";
+import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark, MdPersonAddAlt1, MdLogin, MdFilterListAlt } from "react-icons/md";
 import { useGeneralContext } from "../context/GeneralContext";
 
 const Navigation: React.FC = () => {
@@ -31,8 +31,8 @@ const Navigation: React.FC = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/media/series" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-							<MdLiveTv className={styles.icon} />
+						<NavLink to="/media/movies/filter" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+							<MdFilterListAlt className={styles.icon} />
 						</NavLink>
 					</li>
 					<li>

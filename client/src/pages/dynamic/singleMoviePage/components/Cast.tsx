@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link, NavLink } from "react-router-dom";
 import Bookmark from "../../../../components/Bookmark";
 import { ActionTypes } from "../../../../context/Actions";
 import { useGeneralContext } from "../../../../context/GeneralContext";
@@ -35,9 +36,8 @@ const Cast: React.FC = () => {
 		displayCast = cast.map((person: Person) => {
 			const { id, name, profile_path, character } = person;
 			return (
-				<div key={id} className={styles.actor_container}>
+				<Link to={`/person/${id}`} key={id} className={styles.actor_container}>
 					<Bookmark />
-
 					<div className={styles.image_wrapper}>
 						<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${profile_path}`} className={styles.cast_image} width="auto" />
 					</div>
@@ -45,7 +45,7 @@ const Cast: React.FC = () => {
 						<h2 className={styles.real_name}>{name} </h2>
 						<p className={styles.character_name}>{character} </p>
 					</div>
-				</div>
+				</Link>
 			);
 		});
 	}

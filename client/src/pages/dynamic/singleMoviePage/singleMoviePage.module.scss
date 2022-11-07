@@ -98,6 +98,12 @@
 .release_date {
 }
 
+.bookmark_wrapper {
+	position: absolute;
+	z-index: 2;
+	top: 5%;
+	right: 20%;
+}
 .genre_tag {
 	margin-right: 1rem;
 	padding: 0.5rem;

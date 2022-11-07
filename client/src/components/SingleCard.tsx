@@ -76,25 +76,29 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 	}
 
 	return (
-		<Link to={`/media/movie/${id}`} key={id} className={styles.single_container}>
-			<Bookmark isBookmarked={false} />
-			<div className={styles.rating_wrapper}>
-				<Rating rating={rating} />
+		<span className={styles.single_container_wrapper} key={id}>
+			<div className={styles.bookmark_wrapper}>
+				<Bookmark isBookmarked={false} />
 			</div>
-			<div className={styles.image_wrapper}>
-				<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.trending_image} />
-			</div>
-			<p className={styles.movie_title}>{name ? name : title}</p>
-			<div className={styles.detail_container}>
-				<p className={styles.year}>{release_date ? release_date : first_air_date}</p>
-				<li className={styles.list_item}></li>
-				<span className={styles.span_flex}>
-					{media_type === "movie" ? <MdLocalMovies className={styles.movie_icon} /> : <MdLiveTv className={styles.movie_icon} />}
-					<span className={styles.movie_text}>{media_type}</span>
-				</span>
-			</div>
-			<p className={styles.genre}>Genre: {genre[0] ? (genre[0]["name"] ? genre[0]["name"] : "Unknown") : "Unknown"}</p>
-		</Link>
+			<Link to={`/media/movie/${id}`} className={styles.single_container}>
+				<div className={styles.rating_wrapper}>
+					<Rating rating={rating} />
+				</div>
+				<div className={styles.image_wrapper}>
+					<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${poster_path}`} className={styles.trending_image} />
+				</div>
+				<p className={styles.movie_title}>{name ? name : title}</p>
+				<div className={styles.detail_container}>
+					<p className={styles.year}>{release_date ? release_date : first_air_date}</p>
+					<li className={styles.list_item}></li>
+					<span className={styles.span_flex}>
+						{media_type === "movie" ? <MdLocalMovies className={styles.movie_icon} /> : <MdLiveTv className={styles.movie_icon} />}
+						<span className={styles.movie_text}>{media_type}</span>
+					</span>
+				</div>
+				<p className={styles.genre}>Genre: {genre[0] ? (genre[0]["name"] ? genre[0]["name"] : "Unknown") : "Unknown"}</p>
+			</Link>
+		</span>
 	);
 };
 

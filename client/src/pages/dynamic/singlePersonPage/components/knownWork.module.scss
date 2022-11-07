@@ -1,0 +1,20 @@
+.section_title {
+	padding-left: 3rem;
+	margin: 2rem 0;
+}
+
+.link {
+	display: grid;
+}
+
+.wrapper {
+	padding: 4rem 3rem 3rem 3rem;
+	display: grid;
+	grid-auto-flow: column;
+	gap: 0;
+	overflow-x: auto;
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+}

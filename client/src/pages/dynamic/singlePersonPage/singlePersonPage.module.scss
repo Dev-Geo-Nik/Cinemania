@@ -3,14 +3,12 @@
 	padding-top: 3.2rem;
 	display: flex;
 	padding-bottom: 8rem;
-
 	// overflow-x: hidden;
 }
 
 .wrapper {
 	width: 100%;
 	margin-left: 3.5rem;
-	// background-color: #fff;
 }
 
 .profile_image {
@@ -24,8 +22,11 @@
 	position: relative;
 }
 
-.bookmark_wrapper {
-	top: 0;
+.bookmark_container {
+	position: absolute;
+	z-index: 2;
+	right: 10%;
+	top: 2rem;
 }
 
 .header {
@@ -61,19 +62,9 @@
 }
 
 .social_icons {
-	font-size: 4rem;
+	width: 4rem;
+	display: inline-block;
 	margin-right: 1.5rem;
-	background-color: #fff;
-}
-
-.facebook_icon {
-	color: #4267b2;
-}
-.instagram_icon {
-	background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
-}
-.twitter_icon {
-	color: #1da1f2;
 }
 
 .socials_container {
@@ -81,20 +72,53 @@
 }
 // / 760px 1024px
 @media (max-width: 64em) {
-	.single_movie_container {
+	.single_person_container {
 		flex-direction: column;
+	}
+	.header {
+		flex-direction: column;
+	}
+	.profile_image {
+		width: 30rem;
+		height: auto;
+	}
+	.text_content {
+		margin-left: 0;
+		margin-top: 1rem;
 	}
 }
 
 // 375 -480px
 @media (max-width: 30em) {
 	.single_person_container {
-		padding: unset;
-		margin: unset;
+		padding: 0;
+		margin: 0;
 		width: 100%;
 	}
 
+	.person_container {
+		padding: 0 2rem;
+	}
+	.profile_image {
+		width: 100%;
+		height: auto;
+	}
+
 	.wrapper {
-		margin-left: 0rem;
+		padding: 0;
+		margin: unset;
+	}
+
+	.name {
+		font-size: var(--fs-800-s);
+	}
+
+	.biography_header {
+		font-size: var(--fs-500-s);
+	}
+
+	.biography_text {
+		font-size: var(--fs-500-s);
+		width: 100%;
 	}
 }

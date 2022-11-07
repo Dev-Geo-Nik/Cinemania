@@ -30,7 +30,7 @@ const SimilarMovies: React.FC = () => {
 		displaySimilarMovies = movies.results.map((movie: any) => {
 			let id = movie.id;
 			return (
-				<div className={styles.link} onClick={() => handlerClick(id)} key={Math.random()}>
+				<div className={styles.link} onClick={() => handlerClick(id)} key={id}>
 					<SingleCard media={movie} />;
 				</div>
 			);

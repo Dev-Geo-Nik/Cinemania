@@ -1,7 +1,11 @@
-.single_container {
+.single_container_wrapper {
+	display: block;
 	position: relative;
-	width: 27.8rem;
 	margin: 0 4rem 5rem 0;
+}
+.single_container {
+	width: 27.8rem;
+	display: block;
 }
 
 .detail_container {

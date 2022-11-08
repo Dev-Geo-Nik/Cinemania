@@ -16,6 +16,12 @@ export const reducer: ReducerType = (state, action) => {
 				favMovies: action.payload.favMovies,
 				favSeries: action.payload.favSeries,
 			};
+		case ActionTypes.INIT_USER:
+			return {
+				...state,
+				// @ts-ignore
+				user: JSON.parse(localStorage.getItem("user")),
+			};
 		case ActionTypes.FETCH_TRENDING_DATA:
 			return {
 				...state,
@@ -32,6 +38,11 @@ export const reducer: ReducerType = (state, action) => {
 			return {
 				...state,
 				isLoading: action.payload,
+			};
+		case ActionTypes.DISPLAY_USER_MODAL:
+			return {
+				...state,
+				display_user_modal: action.payload,
 			};
 		case ActionTypes.FETCH_WEEK_TRENDING:
 			return {

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Termwind\Components\Dd;
 
 class MoviesDatabase extends BaseController
 {
@@ -121,5 +121,13 @@ class MoviesDatabase extends BaseController
 
 
         );
+    }
+    public function logout()
+    {
+        Auth::user()->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
+
+        return response()->json('Successfully logged out');
     }
 }

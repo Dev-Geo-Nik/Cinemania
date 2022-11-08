@@ -9,6 +9,7 @@ import Bookmark from "../../../components/Bookmark";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Pagination from "../../../components/Pagination";
 import { Link } from "react-router-dom";
+import UserModal from "../../../components/UserModal";
 
 // export interface Root {
 // 	page: number;
@@ -49,7 +50,7 @@ export interface KnownFor {
 }
 const TrendingPeople: React.FC = () => {
 	const {
-		state: { BACKEND_URL, trending_people, actors_page },
+		state: { BACKEND_URL, trending_people, actors_page, display_user_modal },
 		dispatch,
 	} = useGeneralContext();
 
@@ -79,20 +80,25 @@ const TrendingPeople: React.FC = () => {
 				return null;
 			}
 			return (
-				<Link to={`/person/${id}`} key={id} className={styles.single_container}>
-					<Bookmark isBookmarked={false} />
-					<div className={styles.trending_person_image_container}>
-						<LazyLoadImage alt={""} effect="blur" src={imagePath} className={styles.trending_person_image} />
+				<span className={styles.single_container} key={id}>
+					<div className={styles.bookmark_wrapper}>
+						<Bookmark isBookmarked={false} />
 					</div>
-					<p className={styles.person_title}>{name}</p>
-					<p className={styles.person_profession}>{known_for_department}</p>
-				</Link>
+					<Link to={`/person/${id}`} key={id} className={styles.link}>
+						<div className={styles.trending_person_image_container}>
+							<LazyLoadImage alt={""} effect="blur" src={imagePath} className={styles.trending_person_image} />
+						</div>
+						<p className={styles.person_title}>{name}</p>
+						<p className={styles.person_profession}>{known_for_department}</p>
+					</Link>
+				</span>
 			);
 		});
 	}
 
 	return (
 		<section className={styles.trending_people}>
+			{display_user_modal && <UserModal />}
 			<h2 className={styles.section_title}>Daily trending actors </h2>
 			<div className={styles.trending_wrapper}>{displayRecommendedMovies}</div>
 			<div className={styles.pagination_wrapper}>

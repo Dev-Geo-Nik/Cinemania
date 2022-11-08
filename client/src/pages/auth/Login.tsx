@@ -73,10 +73,14 @@ const Login: React.FC = () => {
 				const data = await res.json();
 				console.log(data);
 				if (data.data.token) {
-					console.log(data.data.token);
-					console.log(data.data.name);
-
+					const user = {
+						email: data.data.name,
+						token: data.data.token,
+					};
+					localStorage.setItem("user", JSON.stringify(user));
 					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
+					// @ts-ignore
+					dispatch({ type: ActionTypes.INIT_USER });
 					setSuccess(true);
 					setErrorMessage("");
 				}
@@ -151,7 +155,7 @@ const Login: React.FC = () => {
 					</form>
 					<div className={styles.link_container}>
 						<span className={styles.span_link_text}>Don’t have an account?</span>
-						<Link to="/user/login" className={styles.link_text}>
+						<Link to="/user/register" className={styles.link_text}>
 							Sign Up
 						</Link>
 					</div>

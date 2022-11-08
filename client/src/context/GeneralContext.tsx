@@ -35,6 +35,7 @@ export interface GeneralContextState {
 	person_bio: any;
 	person_known_for: any;
 	person_socials: any;
+	display_user_modal: boolean;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -45,7 +46,8 @@ const initialState: GeneralContextState = {
 	homeFilter: "",
 	searchFilter: "",
 	bookmarkedFilter: "",
-	user: null,
+	// @ts-ignore
+	user: JSON.parse(localStorage.getItem("user")),
 	BACKEND_URL: "http://localhost:8000/api",
 	isLoading: false,
 	week_trending: [],
@@ -67,6 +69,7 @@ const initialState: GeneralContextState = {
 	person_bio: null,
 	person_known_for: null,
 	person_socials: null,
+	display_user_modal: false,
 };
 
 type ContextHook = () => {

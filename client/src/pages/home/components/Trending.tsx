@@ -10,6 +10,7 @@ import Rating from "../../../components/Rating";
 import { useEffect, useState } from "react";
 import { ActionTypes } from "../../../context/Actions";
 import SingleCard from "../../../components/SingleCard";
+import UserModal from "../../../components/UserModal";
 
 export interface Root {
 	page: number;
@@ -42,7 +43,7 @@ export interface Show {
 
 const Trending: React.FC = () => {
 	const {
-		state: { homeFilter, BACKEND_URL, movies_genres, trending_movies_series },
+		state: { homeFilter, BACKEND_URL, movies_genres, trending_movies_series, display_user_modal },
 		dispatch,
 	} = useGeneralContext();
 	const [error, serError] = useState(false);

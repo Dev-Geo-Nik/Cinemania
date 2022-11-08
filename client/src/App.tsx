@@ -10,7 +10,7 @@ import Router from "./Router";
 const App: React.FC = () => {
 	const {
 		dispatch,
-		state: { BACKEND_URL },
+		state: { BACKEND_URL, display_user_modal },
 	} = useGeneralContext();
 	useEffect(() => {
 		const genres: any = [];

@@ -73,19 +73,19 @@ const Register: React.FC = () => {
 
 				const res = await fetch(`${BACKEND_URL}/user/register`, request);
 				const data = await res.json();
-				console.log(data);
 				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 				if (data.data.token) {
 					// console.log(data.jwt)
 					// console.log(data.user)
-					console.log(data.data.token);
+
+					// console.log(data.data.token);
 					setSuccess(true);
 					setErrorMessage("");
 					return;
 				}
 
 				if (data.message) {
-					console.log(data.message);
+					// console.log(data.message);
 					let message = "Email  already exist";
 					setIsError(true);
 					setErrorMessage(message);

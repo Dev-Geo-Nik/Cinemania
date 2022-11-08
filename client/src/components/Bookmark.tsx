@@ -2,6 +2,8 @@ import styles from "./bookmarkSave.module.scss";
 import { MdBookmark, MdOutlineBookmarkBorder } from "react-icons/md";
 import { useState } from "react";
 import { useGeneralContext } from "../context/GeneralContext";
+import { ActionTypes } from "../context/Actions";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
 	isBookmarked?: boolean;
@@ -9,14 +11,17 @@ interface Props {
 
 const Bookmark: React.FC<Props> = ({ isBookmarked }) => {
 	const {
-		state: {},
+		state: { display_user_modal },
 		dispatch,
 	} = useGeneralContext();
+	const { pathname } = useLocation();
+	let navigate = useNavigate();
 	const user = false;
+
 	const handlerClick = (e: any) => {
 		if (!user) {
-			console.log("please log in or register");
-			return;
+			return navigate("/user/login");
+		} else {
 		}
 	};
 

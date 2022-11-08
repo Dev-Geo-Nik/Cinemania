@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\BlogController;
-use App\Http\Controllers\API\MoviesDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\Bookmark;
+use App\Http\Controllers\API\BlogController;
+use App\Http\Controllers\API\MoviesDatabase;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,11 @@ Route::group(['middleware' => 'cors'], function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     // Route::resource('blogs', BlogController::class);
-    Route::get('blogs', [BlogController::class, "index"]);
-    Route::post('blogs', [BlogController::class, "store"]);
+    Route::get('/bookmarks', [Bookmark::class, "index"]);
+    Route::post('/bookmarks/edit', [Bookmark::class, "edit"]);
+
+
+    Route::get('/blogs', [BlogController::class, "index"]);
+    Route::post('/blogs', [BlogController::class, "store"]);
+    Route::post('/logout', [MoviesDatabase::class, "logout"]);
 });

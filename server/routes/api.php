@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\MoviesDatabase;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProtectRouteController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\Bookmark;
-use App\Http\Controllers\API\BlogController;
-use App\Http\Controllers\API\MoviesDatabase;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +19,9 @@ use App\Http\Controllers\API\MoviesDatabase;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
-Route::post('user/login', [AuthController::class, 'login']);
-Route::post('user/register', [AuthController::class, 'register']);
-
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::get('/movies/trending', [MoviesDatabase::class, 'trending']);
@@ -44,18 +39,20 @@ Route::get('/person/{id}', [MoviesDatabase::class, 'get_person_details']);
 Route::get('/person/work/{id}', [MoviesDatabase::class, 'get_known_for']);
 Route::get('/person/socials/{id}', [MoviesDatabase::class, 'get_social_links']);
 
-
-
-Route::group(['middleware' => 'cors'], function () {
+Route::controller(ProtectRouteController::class)->group(function () {
+    Route::post("/todo/save", [TodoController::class, "store"]);
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    // Route::resource('blogs', BlogController::class);
-    Route::get('/bookmarks', [Bookmark::class, "index"]);
-    Route::post('/bookmarks/edit', [Bookmark::class, "edit"]);
+Route::controller(AuthController::class)->group(function () {
+    Route::post("/user/logout", [AuthController::class, "logout"]);
+    Route::post("/user/login", [AuthController::class, "login"]);
+    Route::post("/user/register", [AuthController::class, "register"]);
+});
 
 
-    Route::get('/blogs', [BlogController::class, "index"]);
-    Route::post('/blogs', [BlogController::class, "store"]);
-    Route::post('/logout', [MoviesDatabase::class, "logout"]);
+Route::controller(BookmarkController::class)->group(function () {
+    Route::get("/bookmarks", [BookmarkController::class, "index"]);
+    Route::post("/bookmark/save", [BookmarkController::class, "store"]);
+    Route::post("/bookmark/delete/{id}", [BookmarkController::class, "delete"]);
+    Route::post("/bookmark/{id}", [BookmarkController::class, "get_single"]);
 });

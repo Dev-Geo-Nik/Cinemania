@@ -29,7 +29,14 @@ const SingleMoviePage: React.FC = () => {
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {
-				const res = await fetch(`${BACKEND_URL}/movies/movie/${movie_id}`);
+				const options = {
+					method: "GET",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				};
+				const res = await fetch(`${BACKEND_URL}/movies/movie/${movie_id}`, options);
 				if (res.status >= 200 && res.status < 300) {
 					const response_data = await res.json();
 					if (response_data.status_message) {
@@ -38,8 +45,8 @@ const SingleMoviePage: React.FC = () => {
 					}
 
 					if (response_data) {
-						const cast_data_req = await fetch(`${BACKEND_URL}/movies/movie/cast/${response_data?.id}`);
-						const similar_movies_req = await fetch(`${BACKEND_URL}/movies/movie/similar-movies/${response_data?.id}`);
+						const cast_data_req = await fetch(`${BACKEND_URL}/movies/movie/cast/${response_data?.id}`, options);
+						const similar_movies_req = await fetch(`${BACKEND_URL}/movies/movie/similar-movies/${response_data?.id}`, options);
 
 						if (cast_data_req.status >= 200 && cast_data_req.status < 300 && similar_movies_req.status >= 200 && similar_movies_req.status < 300) {
 							const cast_data = await cast_data_req.json();

@@ -13,7 +13,7 @@ const Home: React.FC = () => {
 		state: { week_trending, week_trending_page, display_user_modal, user },
 	} = useGeneralContext();
 
-	console.log(user);
+	localStorage.clear();
 	return (
 		<section className={styles.home}>
 			{display_user_modal && <UserModal />}
@@ -21,7 +21,6 @@ const Home: React.FC = () => {
 			<div className={styles.wrapper}>
 				<SearchBar label="Search for movies or TV series" path={"home"} />
 				<Trending />
-				{/* <Recommended /> */}
 				<MediaSection
 					action={ActionTypes.FETCH_WEEK_TRENDING}
 					path={`/movies/week-trending/${week_trending_page}`}

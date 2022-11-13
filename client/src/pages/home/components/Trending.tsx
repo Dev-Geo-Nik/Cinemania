@@ -51,10 +51,17 @@ const Trending: React.FC = () => {
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {
-				const res = await fetch(`${BACKEND_URL}/movies/trending`);
+				const options = {
+					method: "GET",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				};
+				const res = await fetch(`${BACKEND_URL}/movies/trending`, options);
+
 				if (res.status >= 200 && res.status < 300) {
 					const response_data = await res.json();
-
 					if (response_data.status_message) {
 						serError(true);
 						return;

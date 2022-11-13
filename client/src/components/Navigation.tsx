@@ -4,13 +4,15 @@ import Avatar from "../assets/img/avatar.png";
 
 // Libraries
 import { NavLink } from "react-router-dom";
-import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark, MdPersonAddAlt1, MdLogin, MdFilterListAlt } from "react-icons/md";
+import { MdViewList, MdLocalMovies, MdLiveTv, MdBookmark, MdPersonAddAlt1, MdLogin, MdFilterListAlt, MdLogout } from "react-icons/md";
 import { useGeneralContext } from "../context/GeneralContext";
+import Logout from "./Logout";
 
 const Navigation: React.FC = () => {
 	const {
 		state: { user },
 	} = useGeneralContext();
+
 	return (
 		<div className={styles.nav_wrapper}>
 			<nav className={styles.navigation}>
@@ -42,22 +44,30 @@ const Navigation: React.FC = () => {
 					</li>
 				</ul>
 				{user && (
-					<div className={styles.avatar_container}>
-						<img src={Avatar} alt="user avatar" className={styles.avatar} />
-					</div>
+					<>
+						<div className={styles.avatar_container}>
+							<img src={Avatar} alt="user avatar" className={styles.avatar} />
+						</div>
+						<Logout />
+					</>
 				)}
-				<div className={styles.user_links}>
-					<li>
-						<NavLink to="/user/login" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-							<MdLogin className={styles.icon} />
-						</NavLink>
-					</li>
-					<li>
-						<NavLink to="/user/register" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
-							<MdPersonAddAlt1 className={styles.icon} />
-						</NavLink>
-					</li>
-				</div>
+
+				{!user && (
+					<>
+						<div className={styles.user_links}>
+							<li>
+								<NavLink to="/user/login" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+									<MdLogin className={styles.icon} />
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/user/register" end className={({ isActive }) => (isActive ? ` ${styles.active}  active` : `${styles.inactive}`)}>
+									<MdPersonAddAlt1 className={styles.icon} />
+								</NavLink>
+							</li>
+						</div>
+					</>
+				)}
 			</nav>
 		</div>
 	);

@@ -56,10 +56,17 @@ const TrendingPeople: React.FC = () => {
 
 	let displayRecommendedMovies;
 
+	const options = {
+		method: "GET",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+	};
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {
-				const res = await fetch(`${BACKEND_URL}/movies/trending-daily-persons/${actors_page}`);
+				const res = await fetch(`${BACKEND_URL}/movies/trending-daily-persons/${actors_page}`, options);
 				if (res.status >= 200 && res.status < 300) {
 					const responseData = await res.json();
 					if (responseData) {

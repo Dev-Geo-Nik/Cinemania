@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class MoviesDatabase extends BaseController
+class MoviesDatabase extends Controller
 {
     public function trending()
     {
@@ -21,8 +20,9 @@ class MoviesDatabase extends BaseController
 
         return Http::get("https://api.themoviedb.org/3/genre/movie/list?api_key=$api_key");
     }
-    public function week_trending($page)
+    public function week_trending(Request $request, $page)
     {
+
         $api_key = env("MOVIES_DB_API_KEY");
 
         return Http::get("https://api.themoviedb.org/3/trending/movie/week?api_key=$api_key&language=en-US&page=$page");
@@ -121,13 +121,5 @@ class MoviesDatabase extends BaseController
 
 
         );
-    }
-    public function logout()
-    {
-        Auth::user()->tokens->each(function ($token, $key) {
-            $token->delete();
-        });
-
-        return response()->json('Successfully logged out');
     }
 }

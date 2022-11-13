@@ -74,9 +74,9 @@ const Register: React.FC = () => {
 				const res = await fetch(`${BACKEND_URL}/user/register`, request);
 				const data = await res.json();
 				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
-				if (data.data.token) {
+				if (data.user) {
 					// console.log(data.jwt)
-					// console.log(data.user)
+					console.log(data.user);
 
 					// console.log(data.data.token);
 					setSuccess(true);

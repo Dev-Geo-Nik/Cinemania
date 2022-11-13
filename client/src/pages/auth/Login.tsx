@@ -1,5 +1,5 @@
 // Libraries
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSpring, animated as a } from "react-spring";
@@ -28,6 +28,7 @@ const Login: React.FC = () => {
 		dispatch,
 	} = useGeneralContext();
 
+	let navigate = useNavigate();
 	const [success, setSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
@@ -70,12 +71,15 @@ const Login: React.FC = () => {
 				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: true });
 
 				const res = await fetch(`${BACKEND_URL}/user/login`, request);
+				// console.log(res);
 				const data = await res.json();
-				console.log(data);
-				if (data.data.token) {
+				// console.log(data.user);
+				console.log();
+				if (data.user) {
 					const user = {
-						email: data.data.name,
-						token: data.data.token,
+						email: data.user.name,
+						token: data.authorisation.token,
+						user_id: data.user.id,
 					};
 					localStorage.setItem("user", JSON.stringify(user));
 					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
@@ -83,9 +87,10 @@ const Login: React.FC = () => {
 					dispatch({ type: ActionTypes.INIT_USER });
 					setSuccess(true);
 					setErrorMessage("");
+					return navigate("/");
 				}
 
-				if (data.data.error) {
+				if (data.error) {
 					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 					let message = "Wrong username or password.";
 					setIsError(true);

@@ -26,7 +26,14 @@ const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page
 	useEffect(() => {
 		const asyncFetch = async () => {
 			try {
-				const res = await fetch(`${BACKEND_URL}${path}`);
+				const options = {
+					method: "GET",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				};
+				const res = await fetch(`${BACKEND_URL}${path}`, options);
 				if (res.status >= 200 && res.status < 300) {
 					const responseData = await res.json();
 					if (responseData) {

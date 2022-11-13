@@ -1,0 +1,32 @@
+.icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	margin-bottom: 3rem;
+}
+
+.logout_icon {
+	color: var(--clr-nav-icon);
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.logout_icon:hover {
+	color: var(--clr-red-1);
+}
+
+// / 760px 1024px
+@media (max-width: 64em) {
+	.icon {
+		margin: unset;
+		margin-right: 3rem;
+	}
+}
+
+// 375 -480px
+@media (max-width: 30em) {
+	.icon {
+		width: 2rem;
+		height: 2rem;
+		margin-right: 2.2rem;
+	}
+}

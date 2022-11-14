@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { ActionTypes } from "../../../context/Actions";
 import SingleCard from "../../../components/SingleCard";
 import UserModal from "../../../components/UserModal";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export interface Root {
 	page: number;
@@ -43,10 +45,11 @@ export interface Show {
 
 const Trending: React.FC = () => {
 	const {
-		state: { homeFilter, BACKEND_URL, movies_genres, trending_movies_series, display_user_modal },
+		state: { homeFilter, BACKEND_URL, movies_genres, trending_movies_series, display_user_modal, user },
 		dispatch,
 	} = useGeneralContext();
 	const [error, serError] = useState(false);
+	let navigate = useNavigate();
 
 	useEffect(() => {
 		const asyncFetch = async () => {
@@ -73,11 +76,44 @@ const Trending: React.FC = () => {
 		asyncFetch();
 	}, []);
 
+	const handlerClick = (movie: any) => {
+		if (!user) {
+			return navigate("/user/login");
+		}
+
+		const instance = axios.create();
+		instance.defaults.headers.common["Authorization"] = `Bearer  ${user.token}`;
+		instance.defaults.headers.common["Accept"] = "application/json";
+		instance
+			.post("http://localhost:8000/api/bookmark/save", {
+				bookmark_id: 1,
+				name: "test",
+				category: "action",
+				user_email: "geo@gmail.com",
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
+		// console.log(movie);
+	};
+
 	let displayTrendingMovies;
 	if (trending_movies_series.length > 0) {
 		displayTrendingMovies = trending_movies_series.map((movie: any) => {
 			let id = movie.id;
-			return <SingleCard media={movie} key={id} />;
+
+			return (
+				<div key={id} className={styles.single_container}>
+					<div className={styles.bookmark_wrapper} onClick={() => handlerClick(movie)}>
+						<Bookmark isBookmarked={false} />
+					</div>
+					<SingleCard media={movie} key={id} />
+				</div>
+			);
 		});
 	}
 

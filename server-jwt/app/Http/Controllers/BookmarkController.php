@@ -34,13 +34,16 @@ class BookmarkController extends Controller
             'user_email' => 'required',
         ]);
 
-        $bookmark = Bookmark::create($request->post());
 
-        if ($bookmark) {
-            return $this->Success($bookmark, "Bookmark created successfully.");
+        if (Bookmark::where("bookmark_id", 1)->first()) {
+            $deleted = Bookmark::where('bookmark_id', 1)->delete();
+            return $this->Success($deleted, "Bookmark delete successfully.");
         } else {
-            return $this->error([], "something went wrong when creating", 404);
+            $bookmark = Bookmark::create($request->post());
+            return $this->Success($bookmark, "Bookmark created successfully.");
         }
+
+        return $this->error([], "something went wrong when creating", 404);
     }
     public function delete($id)
     {

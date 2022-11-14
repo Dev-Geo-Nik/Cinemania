@@ -77,9 +77,9 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 
 	return (
 		<span className={styles.single_container_wrapper} key={id}>
-			<div className={styles.bookmark_wrapper}>
+			{/* <div className={styles.bookmark_wrapper}>
 				<Bookmark isBookmarked={false} />
-			</div>
+			</div> */}
 			<Link to={`/media/movie/${id}`} className={styles.single_container}>
 				<div className={styles.rating_wrapper}>
 					<Rating rating={rating} />

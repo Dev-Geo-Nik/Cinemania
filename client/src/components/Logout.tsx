@@ -1,27 +1,30 @@
 import { MdLogout } from "react-icons/md";
 import { useGeneralContext } from "../context/GeneralContext";
 import styles from "./logout.module.scss";
+import axios from "axios";
+import { ActionTypes } from "../context/Actions";
+import { useNavigate } from "react-router-dom";
 
 const Logout: React.FC = () => {
 	const {
 		state: { user, BACKEND_URL },
+		dispatch,
 	} = useGeneralContext();
-
-	console.log(user.token);
+	let navigate = useNavigate();
 	const handlerClick = () => {
 		const asyncFetch = async () => {
 			try {
 				const options = {
 					method: "Post",
-					credentials: "include",
-					// prettier-ignore
 					headers: {
-							"Accept": "application/json",
-							"Authorization": `Bearer  ${user.token}`,
-							"Content-Type": "application/json",
-	
-						},
+						Accept: "application/json",
+						"Content-Type": "application/json",
+						withCredentials: "include",
+						Authorization: `Bearer ` + user.token,
+						// body: JSON.stringify(user.token),
+					},
 				};
+
 				// @ts-ignore
 				const res = await fetch(`${BACKEND_URL}/user/logout`, options);
 				console.log(res);
@@ -32,11 +35,29 @@ const Logout: React.FC = () => {
 						console.log(response_data.status_message);
 						return;
 					}
-					// dispatch({ type: ActionTypes.FETCH_TRENDING_DATA, payload: response_data.results });
+					localStorage.clear();
+					dispatch({ type: ActionTypes.LOGOUT_USER });
+					return navigate("/");
 				}
 			} catch (err: any) {}
 		};
-		asyncFetch();
+
+		// asyncFetch();
+
+		const instance = axios.create({
+			baseURL: "http://localhost:8000/api",
+		});
+		instance.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
+		instance
+			.post("/user/logout")
+			.then((res) => {
+				localStorage.clear();
+				dispatch({ type: ActionTypes.LOGOUT_USER });
+				return navigate("/");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (

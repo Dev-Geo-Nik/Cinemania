@@ -22,6 +22,11 @@ export const reducer: ReducerType = (state, action) => {
 				// @ts-ignore
 				user: JSON.parse(localStorage.getItem("user")),
 			};
+		case ActionTypes.LOGOUT_USER:
+			return {
+				...state,
+				user: null,
+			};
 		case ActionTypes.FETCH_TRENDING_DATA:
 			return {
 				...state,

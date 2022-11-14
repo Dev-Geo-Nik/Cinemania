@@ -11,22 +11,13 @@ interface Props {
 
 const Bookmark: React.FC<Props> = ({ isBookmarked }) => {
 	const {
-		state: { display_user_modal },
+		state: { display_user_modal, user },
 		dispatch,
 	} = useGeneralContext();
 	const { pathname } = useLocation();
-	let navigate = useNavigate();
-	const user = false;
-
-	const handlerClick = (e: any) => {
-		if (!user) {
-			return navigate("/user/login");
-		} else {
-		}
-	};
 
 	return (
-		<div className={styles.bookmark_icon_container} onClick={handlerClick}>
+		<div className={styles.bookmark_icon_container}>
 			{isBookmarked ? <MdBookmark className={`${styles.book_icon} ${styles.book_save}`} /> : <MdOutlineBookmarkBorder className={`${styles.book_icon} ${styles.book_unsaved}`} />}
 		</div>
 	);

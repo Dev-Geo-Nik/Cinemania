@@ -12,8 +12,6 @@ const Home: React.FC = () => {
 	const {
 		state: { week_trending, week_trending_page, display_user_modal, user },
 	} = useGeneralContext();
-
-	localStorage.clear();
 	return (
 		<section className={styles.home}>
 			{display_user_modal && <UserModal />}

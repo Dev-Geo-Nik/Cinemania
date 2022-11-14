@@ -22,6 +22,16 @@
 	overflow-x: auto;
 }
 
+.single_container {
+	position: relative;
+}
+
+.bookmark_wrapper {
+	position: absolute;
+	top: 5%;
+	right: 20%;
+}
+
 // / 760px 1024px
 @media (max-width: 64em) {
 }

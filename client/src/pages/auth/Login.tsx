@@ -63,7 +63,7 @@ const Login: React.FC = () => {
 			// prettier-ignore
 			const request = {
 				method: "POST",
-				headers: { "Content-Type": "application/json", "Accept": "application/json, text-plain,/" },
+				headers: { "Content-Type": "application/json", "Accept": "application/json" },
 				body: JSON.stringify(loginUserPayload),
 			};
 
@@ -71,10 +71,8 @@ const Login: React.FC = () => {
 				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: true });
 
 				const res = await fetch(`${BACKEND_URL}/user/login`, request);
-				// console.log(res);
 				const data = await res.json();
 				// console.log(data.user);
-				console.log();
 				if (data.user) {
 					const user = {
 						email: data.user.name,

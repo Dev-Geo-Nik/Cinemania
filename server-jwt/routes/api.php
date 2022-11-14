@@ -44,15 +44,15 @@ Route::controller(ProtectRouteController::class)->group(function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post("/user/logout", [AuthController::class, "logout"]);
-    Route::post("/user/login", [AuthController::class, "login"]);
-    Route::post("/user/register", [AuthController::class, "register"]);
+    Route::post("/user/logout", "logout");
+    Route::post("/user/login", "login");
+    Route::post("/user/register", "register");
 });
 
 
 Route::controller(BookmarkController::class)->group(function () {
-    Route::get("/bookmarks", [BookmarkController::class, "index"]);
-    Route::post("/bookmark/save", [BookmarkController::class, "store"]);
-    Route::post("/bookmark/delete/{id}", [BookmarkController::class, "delete"]);
-    Route::post("/bookmark/{id}", [BookmarkController::class, "get_single"]);
+    Route::get("/bookmarks", "index");
+    Route::post("/bookmark/save", "store");
+    Route::post("/bookmark/delete/{id}", "delete");
+    Route::post("/bookmark/{id}", "get_single");
 });

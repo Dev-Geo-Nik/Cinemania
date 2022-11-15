@@ -36,16 +36,20 @@ const Cast: React.FC = () => {
 		displayCast = cast.map((person: Person) => {
 			const { id, name, profile_path, character } = person;
 			return (
-				<Link to={`/person/${id}`} key={id} className={styles.actor_container}>
-					<Bookmark />
-					<div className={styles.image_wrapper}>
-						<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${profile_path}`} className={styles.cast_image} width="auto" />
+				<div className={styles.single_cast_container} key={id}>
+					<div className={styles.bookmark_container}>
+						<Bookmark media={person} />
 					</div>
-					<div className={styles.text_container}>
-						<h2 className={styles.real_name}>{name} </h2>
-						<p className={styles.character_name}>{character} </p>
-					</div>
-				</Link>
+					<Link to={`/person/${id}`} className={styles.actor_container}>
+						<div className={styles.image_wrapper}>
+							<LazyLoadImage alt={name} effect="blur" src={`https://image.tmdb.org/t/p/original/${profile_path}`} className={styles.cast_image} width="auto" />
+						</div>
+						<div className={styles.text_container}>
+							<h2 className={styles.real_name}>{name} </h2>
+							<p className={styles.character_name}>{character} </p>
+						</div>
+					</Link>
+				</div>
 			);
 		});
 	}

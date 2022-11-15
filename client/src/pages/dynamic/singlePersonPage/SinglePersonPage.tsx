@@ -52,7 +52,7 @@ const SinglePersonPage: React.FC = () => {
 			<>
 				<div className={styles.person_container}>
 					<div className={styles.bookmark_container}>
-						<Bookmark />
+						<Bookmark media={person_bio} />
 					</div>
 					<div className={styles.header}>
 						<img src={`https://image.tmdb.org/t/p/original/${profile_path}`} className={styles.profile_image} alt={name} />

@@ -60,6 +60,11 @@
 	padding-left: 1rem;
 }
 
+.single_cast_container {
+	display: grid;
+	position: relative;
+}
+
 // / 760px 1024px
 @media (max-width: 64em) {
 }

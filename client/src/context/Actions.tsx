@@ -23,6 +23,7 @@ export enum ActionTypes {
 	DISPLAY_USER_MODAL = "DISPLAY_USER_MODAL",
 	INIT_USER = "INIT_USER",
 	LOGOUT_USER = "LOGOUT_USER",
+	FETCH_BOOKMARKS = "FETCH_BOOKMARKS",
 }
 
 export enum PayloadTypes {}

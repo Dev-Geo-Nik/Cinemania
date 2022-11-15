@@ -89,7 +89,7 @@ const TrendingPeople: React.FC = () => {
 			return (
 				<span className={styles.single_container} key={id}>
 					<div className={styles.bookmark_wrapper}>
-						<Bookmark isBookmarked={false} />
+						<Bookmark isBookmarked={false} media={actor} />
 					</div>
 					<Link to={`/person/${id}`} key={id} className={styles.link}>
 						<div className={styles.trending_person_image_container}>

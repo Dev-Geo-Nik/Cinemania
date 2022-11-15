@@ -63,6 +63,7 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 		first_air_date,
 	} = media;
 	// console.log(genre_ids[0]);
+
 	const rating = +vote_average.toFixed(1) * 10;
 
 	let genre;
@@ -77,9 +78,9 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 
 	return (
 		<span className={styles.single_container_wrapper} key={id}>
-			{/* <div className={styles.bookmark_wrapper}>
-				<Bookmark isBookmarked={false} />
-			</div> */}
+			<div className={styles.bookmark_wrapper}>
+				<Bookmark isBookmarked={false} media={media} />
+			</div>
 			<Link to={`/media/movie/${id}`} className={styles.single_container}>
 				<div className={styles.rating_wrapper}>
 					<Rating rating={rating} />

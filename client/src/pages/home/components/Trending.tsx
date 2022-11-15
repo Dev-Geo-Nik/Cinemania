@@ -76,44 +76,11 @@ const Trending: React.FC = () => {
 		asyncFetch();
 	}, []);
 
-	const handlerClick = (movie: any) => {
-		if (!user) {
-			return navigate("/user/login");
-		}
-
-		const instance = axios.create();
-		instance.defaults.headers.common["Authorization"] = `Bearer  ${user.token}`;
-		instance.defaults.headers.common["Accept"] = "application/json";
-		instance
-			.post("http://localhost:8000/api/bookmark/save", {
-				bookmark_id: 1,
-				name: "test",
-				category: "action",
-				user_email: "geo@gmail.com",
-			})
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-
-		// console.log(movie);
-	};
-
 	let displayTrendingMovies;
 	if (trending_movies_series.length > 0) {
 		displayTrendingMovies = trending_movies_series.map((movie: any) => {
 			let id = movie.id;
-
-			return (
-				<div key={id} className={styles.single_container}>
-					<div className={styles.bookmark_wrapper} onClick={() => handlerClick(movie)}>
-						<Bookmark isBookmarked={false} />
-					</div>
-					<SingleCard media={movie} key={id} />
-				</div>
-			);
+			return <SingleCard media={movie} key={id} />;
 		});
 	}
 

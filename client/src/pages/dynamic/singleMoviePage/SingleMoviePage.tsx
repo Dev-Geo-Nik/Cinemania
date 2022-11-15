@@ -88,7 +88,7 @@ const SingleMoviePage: React.FC = () => {
 			<>
 				<div className={styles.header}>
 					<div className={styles.bookmark_wrapper}>
-						<Bookmark />
+						<Bookmark media={single_movie} />
 					</div>
 					<img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} className={styles.background_image} alt={title} />
 					<div className={styles.content}>

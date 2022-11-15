@@ -39,6 +39,11 @@ export const reducer: ReducerType = (state, action) => {
 				person_known_for: action.payload[1],
 				person_socials: action.payload[2],
 			};
+		case ActionTypes.FETCH_BOOKMARKS:
+			return {
+				...state,
+				bookmarks: action.payload,
+			};
 		case ActionTypes.TOGGLE_LOADING:
 			return {
 				...state,

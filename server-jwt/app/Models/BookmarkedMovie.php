@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bookmark extends Model
+class BookmarkedMovie extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'bookmark_id',
+        'movie_id',
+        "media_type",
         'name',
-        'category',
-        "user_email"
+        'poster_path',
+        "release_date",
+        "vote_average",
+        "genre_ids",
+        "user_id"
+
     ];
 }

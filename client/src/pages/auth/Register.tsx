@@ -76,7 +76,6 @@ const Register: React.FC = () => {
 				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 				if (data.user) {
 					// console.log(data.jwt)
-					console.log(data.user);
 
 					// console.log(data.data.token);
 					setSuccess(true);

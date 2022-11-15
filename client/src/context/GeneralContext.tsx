@@ -36,6 +36,7 @@ export interface GeneralContextState {
 	person_known_for: any;
 	person_socials: any;
 	display_user_modal: boolean;
+	bookmarks: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -70,6 +71,7 @@ const initialState: GeneralContextState = {
 	person_known_for: null,
 	person_socials: null,
 	display_user_modal: false,
+	bookmarks: [],
 };
 
 type ContextHook = () => {

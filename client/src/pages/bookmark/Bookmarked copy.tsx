@@ -1,7 +1,7 @@
-import Navigation from "../components/Navigation";
-import SearchBar from "../components/SearchBar";
-import SingleCard from "../components/SingleCard";
-import { useGeneralContext } from "../context/GeneralContext";
+import Navigation from "../../components/Navigation";
+import SearchBar from "../../components/SearchBar";
+import SingleCard from "../../components/SingleCard";
+import { useGeneralContext } from "../../context/GeneralContext";
 import styles from "./bookmarked.module.scss";
 
 const Bookmarked: React.FC = () => {
@@ -66,7 +66,7 @@ const Bookmarked: React.FC = () => {
 				<SearchBar label="Search for bookmarked shows" path={"bookmarked"} />
 				<h2 className={styles.section_title}>Bookmarked Movies</h2>
 				<div className={styles.wrapper}>{displayBookmarkedMovies}</div>
-				<h2 className={styles.section_title}>Bookmarked TV Series</h2>
+				<h2 className={styles.section_title}>Bookmarked personalities</h2>
 				<div className={styles.wrapper}>{displayBookmarkedSeries}</div>
 			</div>
 		</section>

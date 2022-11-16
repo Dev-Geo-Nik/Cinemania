@@ -9,10 +9,11 @@ import { json } from "node:stream/consumers";
 
 interface Props {
 	media: any;
-	isBookmarked?: boolean;
+	bookmarked?: boolean;
+	remove_person_bookmarked?: boolean;
 }
 
-const Bookmark: React.FC<Props> = ({ media, isBookmarked }) => {
+const Bookmark: React.FC<Props> = ({ media, bookmarked, remove_person_bookmarked }) => {
 	const {
 		state: { display_user_modal, user },
 		dispatch,
@@ -20,20 +21,23 @@ const Bookmark: React.FC<Props> = ({ media, isBookmarked }) => {
 	const { pathname } = useLocation();
 	let navigate = useNavigate();
 
+	const isBookmarked = false;
+	// console.log(location);
 	const handlerClick = () => {
 		if (!user) {
 			return navigate("/user/login");
 		}
+
 		const axios_obj = axios.create();
 		axios_obj.defaults.headers.common["Authorization"] = `Bearer  ${user.token}`;
 		axios_obj.defaults.headers.common["Accept"] = "application/json";
 
-		if (media.media_type === "movie") {
+		if (bookmarked) {
 			axios_obj
 				.post("http://localhost:8000/api/bookmark/movie/save", {
-					movie_id: media.id,
-					name: media.original_title,
-					media_type: media.media_type,
+					movie_id: media.movie_id,
+					name: media.name,
+					media_type: "movie",
 					poster_path: media.poster_path,
 					release_date: media.release_date,
 					vote_average: media.vote_average,
@@ -41,52 +45,89 @@ const Bookmark: React.FC<Props> = ({ media, isBookmarked }) => {
 					user_id: user.user_id,
 				})
 				.then((res) => {
-					console.log(res);
+					dispatch({ type: ActionTypes.REMOVE_BOOKMARK_MOVIE });
 				})
 				.catch((err) => {
 					console.log(err);
 				});
-		}
-		if (media.title || media.budget) {
-			console.log(media);
-			const genres = media.genres ? media.genres : media.genre_ids;
+		} else {
+			if (media.genre_ids) {
+				const name = media.original_title ? media.original_title : media.name;
+				axios_obj
+					.post("http://localhost:8000/api/bookmark/movie/save", {
+						movie_id: media.id,
+						name: name,
+						media_type: "movie",
+						poster_path: media.poster_path,
+						release_date: media.release_date,
+						vote_average: media.vote_average,
+						genre_ids: JSON.stringify(media.genre_ids),
+						user_id: user.user_id,
+					})
+					.then((res) => {
+						// console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
 
-			axios_obj
-				.post("http://localhost:8000/api/bookmark/movie/save", {
-					movie_id: media.id,
-					name: media.title,
-					media_type: "movie",
-					poster_path: media.poster_path,
-					release_date: media.release_date,
-					vote_average: media.vote_average,
-					genre_ids: JSON.stringify(genres),
-					user_id: user.user_id,
-				})
-				.then((res) => {
-					console.log(res);
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+			if (media.genres) {
+				axios_obj
+					.post("http://localhost:8000/api/bookmark/movie/save", {
+						movie_id: media.id,
+						name: media.original_title,
+						media_type: "movie",
+						poster_path: media.poster_path,
+						release_date: media.release_date,
+						vote_average: media.vote_average,
+						genre_ids: JSON.stringify(media.genres),
+						user_id: user.user_id,
+					})
+					.then((res) => {
+						// console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
 		}
-		if (media.media_type === "person" || media.also_known_as || media.known_for_department) {
-			const name = media.original_name ? media.original_name : media.name;
-			console.log(media);
+
+		if (remove_person_bookmarked) {
 			axios_obj
 				.post("http://localhost:8000/api/bookmark/person/save", {
-					person_id: media.id,
-					name: name,
+					person_id: media.person_id,
+					name: media.name,
 					category: "person",
 					profile_path: media.profile_path,
 					known_for_department: "Acting",
 					user_id: user.user_id,
 				})
 				.then((res) => {
-					console.log(res);
+					// console.log(res);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
+		} else {
+			if (media.media_type === "person" || media.also_known_as || media.known_for_department) {
+				const name = media.original_name ? media.original_name : media.name;
+				axios_obj
+					.post("http://localhost:8000/api/bookmark/person/save", {
+						person_id: media.id,
+						name: name,
+						category: "person",
+						profile_path: media.profile_path,
+						known_for_department: "Acting",
+						user_id: user.user_id,
+					})
+					.then((res) => {
+						// console.log(res);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
 		}
 	};
 

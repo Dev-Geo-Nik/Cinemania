@@ -24,6 +24,7 @@ export enum ActionTypes {
 	INIT_USER = "INIT_USER",
 	LOGOUT_USER = "LOGOUT_USER",
 	FETCH_BOOKMARKS = "FETCH_BOOKMARKS",
+	REMOVE_BOOKMARK_MOVIE = "REMOVE_BOOKMARK_MOVIE",
 }
 
 export enum PayloadTypes {}

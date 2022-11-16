@@ -7,7 +7,7 @@ import { loginUserSchema } from "../../utils/helpers";
 
 // Local
 import Navigation from "../../components/Navigation";
-import styles from "./register.module.scss";
+import styles from "./login.module.scss";
 import { useState } from "react";
 import { useGeneralContext } from "../../context/GeneralContext";
 import ButtonLogin from "../../components/ButtonLogin";
@@ -72,7 +72,8 @@ const Login: React.FC = () => {
 
 				const res = await fetch(`${BACKEND_URL}/user/login`, request);
 				const data = await res.json();
-				// console.log(data.user);
+				console.log(data);
+
 				if (data.user) {
 					const user = {
 						email: data.user.name,
@@ -84,17 +85,19 @@ const Login: React.FC = () => {
 					// @ts-ignore
 					dispatch({ type: ActionTypes.INIT_USER });
 					setSuccess(true);
+					setIsError(false);
 					setErrorMessage("");
 					return navigate("/");
 				}
 
-				if (data.error) {
+				if (data.message) {
 					dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 					let message = "Wrong username or password.";
-					setIsError(true);
 					setErrorMessage(message);
+					setIsError(true);
 				}
 			} catch (err: any) {
+				dispatch({ type: ActionTypes.TOGGLE_LOADING, payload: false });
 				setIsError(true);
 				setTimeout(() => {
 					setShakeError(true);
@@ -115,7 +118,7 @@ const Login: React.FC = () => {
 	}
 
 	return (
-		<section className={styles.register}>
+		<section className={styles.login}>
 			<Navigation />
 
 			{isLoading && <Spinner />}
@@ -146,8 +149,8 @@ const Login: React.FC = () => {
 						<div className={styles.form_control}>
 							<input type="password" placeholder="Password" {...register("password")} />
 						</div>
-						{errors.email ? (
-							<span className={styles.error}>{errors.email.message}</span>
+						{errors.password ? (
+							<span className={styles.error}>{errors.password.message}</span>
 						) : isError ? (
 							<span className={styles.error}>{errorMessage}</span>
 						) : (

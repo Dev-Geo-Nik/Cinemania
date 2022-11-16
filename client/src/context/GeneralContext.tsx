@@ -37,6 +37,7 @@ export interface GeneralContextState {
 	person_socials: any;
 	display_user_modal: boolean;
 	bookmarks: any;
+	bookmark_remove: boolean;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -72,6 +73,7 @@ const initialState: GeneralContextState = {
 	person_socials: null,
 	display_user_modal: false,
 	bookmarks: [],
+	bookmark_remove: false,
 };
 
 type ContextHook = () => {

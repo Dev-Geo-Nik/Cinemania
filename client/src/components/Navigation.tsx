@@ -1,6 +1,6 @@
 import styles from "./navigation.module.scss";
 import Logo from "../assets/img/logo.svg";
-import Avatar from "../assets/img/avatar.png";
+import Avatar from "../assets/img/avatar_placeholder.png";
 
 // Libraries
 import { NavLink } from "react-router-dom";

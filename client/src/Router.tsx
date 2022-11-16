@@ -10,6 +10,7 @@ import Login from "./pages/auth/Login";
 import Movies from "./pages/movies/Movies";
 import SingleMoviePage from "./pages/dynamic/singleMoviePage/SingleMoviePage";
 import SinglePersonPage from "./pages/dynamic/singlePersonPage/SinglePersonPage";
+import Movies_filter from "./pages/movies_filter/Movies_filter";
 
 const Router: React.FC = () => {
 	return (
@@ -19,7 +20,7 @@ const Router: React.FC = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/user/register" element={<Register />} />
 					<Route path="/user/login" element={<Login />} />
-					{/* <Route path="/media/:category" element={<Media />} /> */}
+					<Route path="/media/movies/filter" element={<Movies_filter />} />
 					<Route path="/media/movie/:id" element={<SingleMoviePage />} />
 					<Route path="/person/:id" element={<SinglePersonPage />} />
 					<Route path="/media/movies" element={<Movies />} />

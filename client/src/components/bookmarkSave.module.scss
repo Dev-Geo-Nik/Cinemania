@@ -1,6 +1,6 @@
 .bookmark_icon_container {
 	position: absolute;
-	right: 6%;
+	right: 12%;
 	z-index: 4;
 	top: 6%;
 	width: 3rem;
@@ -11,6 +11,7 @@
 	align-items: center;
 	border-radius: 50%;
 	transition: all 0.5s ease-in-out;
+	cursor: pointer;
 }
 
 .modal {

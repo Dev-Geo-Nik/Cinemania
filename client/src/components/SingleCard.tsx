@@ -5,9 +5,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Rating from "./Rating";
 import { useGeneralContext } from "../context/GeneralContext";
 import { Link } from "react-router-dom";
+import { ActionTypes } from "../context/Actions";
 
 interface Props {
 	media: Result;
+	movie_id?: number;
+	bookmarked?: boolean;
 }
 
 export interface Root {
@@ -39,9 +42,10 @@ export interface Result {
 	video?: boolean;
 }
 
-const SingleCard: React.FC<Props> = ({ media }) => {
+const SingleCard: React.FC<Props> = ({ media, movie_id, bookmarked }) => {
 	const {
-		state: { movies_genres },
+		state: { movies_genres, bookmarks },
+		dispatch,
 	} = useGeneralContext();
 
 	const {
@@ -76,12 +80,17 @@ const SingleCard: React.FC<Props> = ({ media }) => {
 		});
 	}
 
+	const media_id = movie_id ? movie_id : id;
+	const handlerClick = () => {
+		console.log("remove this movie form bookmark");
+	};
 	return (
 		<span className={styles.single_container_wrapper} key={id}>
 			<div className={styles.bookmark_wrapper}>
-				<Bookmark isBookmarked={false} media={media} />
+				<Bookmark media={media} bookmarked={bookmarked} />
 			</div>
-			<Link to={`/media/movie/${id}`} className={styles.single_container}>
+
+			<Link to={`/media/movie/${media_id}`} className={styles.single_container}>
 				<div className={styles.rating_wrapper}>
 					<Rating rating={rating} />
 				</div>

@@ -38,6 +38,7 @@ Route::get('/movies/movie/similar-movies/{id}', [MoviesDatabase::class, 'get_lis
 Route::get('/person/{id}', [MoviesDatabase::class, 'get_person_details']);
 Route::get('/person/work/{id}', [MoviesDatabase::class, 'get_known_for']);
 Route::get('/person/socials/{id}', [MoviesDatabase::class, 'get_social_links']);
+Route::get('/movies/genre', [MoviesDatabase::class, 'get_genre']);
 
 
 Route::controller(ProtectRouteController::class)->group(function () {
@@ -45,7 +46,14 @@ Route::controller(ProtectRouteController::class)->group(function () {
     Route::post("/bookmark/movie/save", [BookmarkController::class, "store_movie"]);
     Route::post("/bookmark/person/save", [BookmarkController::class, "store_person"]);
     Route::post("/bookmarks", [BookmarkController::class, "index"]);
+
+
+    // Route::post("/user/login", [AuthController::class, "login"]);
+    // Route::post("/user/register", [AuthController::class, "register"]);
+    // Route::post("/user/logout", [AuthController::class, "logout"]);
 });
+
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::post("/user/logout", "logout");

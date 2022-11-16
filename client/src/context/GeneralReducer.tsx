@@ -42,12 +42,18 @@ export const reducer: ReducerType = (state, action) => {
 		case ActionTypes.FETCH_BOOKMARKS:
 			return {
 				...state,
+				bookmark_remove: false,
 				bookmarks: action.payload,
 			};
 		case ActionTypes.TOGGLE_LOADING:
 			return {
 				...state,
 				isLoading: action.payload,
+			};
+		case ActionTypes.REMOVE_BOOKMARK_MOVIE:
+			return {
+				...state,
+				bookmark_remove: true,
 			};
 		case ActionTypes.DISPLAY_USER_MODAL:
 			return {

@@ -1,6 +1,6 @@
 @use "../../assets/css/index.scss";
 
-.register {
+.login {
 	display: flex;
 	padding-top: 3.2rem;
 }
@@ -142,7 +142,7 @@
 
 // / 760px 1024px
 @media (max-width: 64em) {
-	.register {
+	.login {
 		flex-direction: column;
 	}
 	.wrapper {
@@ -163,7 +163,7 @@
 
 // 375 -480px
 @media (max-width: 30em) {
-	.register {
+	.login {
 		padding-top: 0;
 		flex-direction: column;
 	}

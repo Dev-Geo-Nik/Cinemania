@@ -122,4 +122,12 @@ class MoviesDatabase extends Controller
 
         );
     }
+    public function get_genre()
+    {
+        $api_key = env("MOVIES_DB_API_KEY");
+
+        return Http::get(
+            "https://api.themoviedb.org/3/genre/movie/list?api_key=$api_key&language=en-US"
+        );
+    }
 }

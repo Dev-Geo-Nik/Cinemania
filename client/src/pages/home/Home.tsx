@@ -4,6 +4,7 @@ import SearchBar from "../../components/SearchBar";
 import UserModal from "../../components/UserModal";
 import { ActionTypes } from "../../context/Actions";
 import { useGeneralContext } from "../../context/GeneralContext";
+import InitBookmarked from "./components/InitBookmarked";
 import Trending from "./components/Trending";
 import TrendingPeople from "./components/TrendingPeople";
 import styles from "./home.module.scss";
@@ -15,9 +16,11 @@ const Home: React.FC = () => {
 	return (
 		<section className={styles.home}>
 			{display_user_modal && <UserModal />}
+			{/* {user && <InitBookmarked />} */}
 			<Navigation />
 			<div className={styles.wrapper}>
 				<SearchBar label="Search for movies or TV series" path={"home"} />
+
 				<Trending />
 				<MediaSection
 					action={ActionTypes.FETCH_WEEK_TRENDING}

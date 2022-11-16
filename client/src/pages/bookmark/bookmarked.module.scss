@@ -14,7 +14,14 @@
 	margin: 0 4rem 3.2rem 0;
 }
 
-.wrapper {
+.movies_wrapper {
+	padding-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.persons_wrapper {
+	padding-top: 3rem;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -25,9 +32,60 @@
 	margin-bottom: 2.5rem;
 }
 
+.single_container {
+	position: relative;
+	width: 27.8rem;
+	color: #fff;
+	margin: 0 4rem 3.2rem 0;
+}
+
+.link {
+	color: #fff;
+}
+
+.trending_person_image_container {
+	background-image: url("../../assets/img/image-placeholder.jpg");
+	background-position: center;
+	height: 90%;
+}
+
+.person_profession {
+	position: absolute;
+	left: 10%;
+	top: 6%;
+
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 0.4rem;
+}
+
+.trending_person_image {
+	display: block;
+	height: 100%;
+}
+
+.person_title {
+	white-space: nowrap;
+	overflow: hidden;
+
+	text-overflow: ellipsis;
+	font-size: var(--fs-700);
+	// padding: 1rem;
+	// margin: 1rem 0;
+}
+
+.pagination_wrapper {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+}
 @media (max-width: 64em) {
 	.Bookmarked {
 		flex-direction: column;
+	}
+	.single_container {
+		width: 22rem;
+		margin: 0 2.6rem 2.4rem 0;
 	}
 }
 
@@ -43,5 +101,17 @@
 
 	.section_title {
 		font-size: var(--fs-800-s);
+	}
+
+	.single_container {
+		width: 16rem;
+		margin: 0 1.4rem 1.4rem 0;
+	}
+	.section_title {
+		font-size: var(--fs-800-s);
+	}
+
+	.person_title {
+		font-size: var(--fs-600-s);
 	}
 }

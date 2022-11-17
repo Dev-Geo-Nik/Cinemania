@@ -48,6 +48,7 @@ const Logout: React.FC = () => {
 			baseURL: "http://localhost:8000/api",
 		});
 		instance.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
+
 		instance
 			.post("/user/logout")
 			.then((res) => {
@@ -56,7 +57,9 @@ const Logout: React.FC = () => {
 				return navigate("/");
 			})
 			.catch((err) => {
-				console.log(err);
+				localStorage.clear();
+				// console.log(err);
+				return navigate("/");
 			});
 	};
 

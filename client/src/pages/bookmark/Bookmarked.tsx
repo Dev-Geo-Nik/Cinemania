@@ -78,7 +78,7 @@ const Bookmarked: React.FC = () => {
 		<section className={styles.Bookmarked}>
 			<Navigation />
 			<div className={styles.container}>
-				<SearchBar label="Search for bookmarked shows" path={"bookmarked"} />
+				{/* <SearchBar label="Search for bookmarked shows" path={"bookmarked"} /> */}
 				<h2 className={styles.section_title}>Bookmarked Movies</h2>
 				<div className={styles.movies_wrapper}>{displayBookmarkedMovies}</div>
 				<h2 className={styles.section_title}>Bookmarked Personalities</h2>

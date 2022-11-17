@@ -39,6 +39,11 @@ export const reducer: ReducerType = (state, action) => {
 				person_known_for: action.payload[1],
 				person_socials: action.payload[2],
 			};
+		case ActionTypes.FETCH_CURRENT_MOVIES_BY_GENRE:
+			return {
+				...state,
+				current_movies_by_genre: action.payload,
+			};
 		case ActionTypes.FETCH_BOOKMARKS:
 			return {
 				...state,
@@ -54,6 +59,21 @@ export const reducer: ReducerType = (state, action) => {
 			return {
 				...state,
 				bookmark_remove: true,
+			};
+		case ActionTypes.CHANGE_CURRENT_GENRE_ID:
+			return {
+				...state,
+				genre_id: action.payload,
+			};
+		case ActionTypes.UPDATE_CURRENT_GENRE_ID:
+			return {
+				...state,
+				genre_id: action.payload,
+			};
+		case ActionTypes.FETCH_GENRE:
+			return {
+				...state,
+				genre: action.payload,
 			};
 		case ActionTypes.DISPLAY_USER_MODAL:
 			return {
@@ -79,6 +99,11 @@ export const reducer: ReducerType = (state, action) => {
 			return {
 				...state,
 				week_trending_page: action.payload,
+			};
+		case ActionTypes.UPDATE_CURRENT_MOVIES_BY_GENRE:
+			return {
+				...state,
+				current_genre_movie_page: action.payload,
 			};
 		case ActionTypes.FETCH_TRENDING_PEOPLE:
 			return {

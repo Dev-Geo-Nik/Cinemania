@@ -22,6 +22,7 @@ export interface GeneralContextState {
 	upcoming_movies: any;
 	actors_page: number;
 	week_trending_page: number;
+	current_genre_movie_page: number;
 	top_rated_page: number;
 	top_upcoming_page: number;
 	movies_playing_now_page: number;
@@ -38,6 +39,9 @@ export interface GeneralContextState {
 	display_user_modal: boolean;
 	bookmarks: any;
 	bookmark_remove: boolean;
+	genre: any;
+	genre_id: number;
+	current_movies_by_genre: any;
 }
 const initialState: GeneralContextState = {
 	allData: [],
@@ -58,6 +62,7 @@ const initialState: GeneralContextState = {
 	upcoming_movies: [],
 	actors_page: 1,
 	week_trending_page: 1,
+	current_genre_movie_page: 1,
 	top_rated_page: 1,
 	top_upcoming_page: 1,
 	movies_playing_now: [],
@@ -74,6 +79,9 @@ const initialState: GeneralContextState = {
 	display_user_modal: false,
 	bookmarks: [],
 	bookmark_remove: false,
+	genre: {},
+	genre_id: 28,
+	current_movies_by_genre: [],
 };
 
 type ContextHook = () => {

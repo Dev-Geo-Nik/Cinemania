@@ -11,9 +11,10 @@ interface Props {
 	section_title: string;
 	page: number;
 	data: any;
+	filter_category?: number;
 }
 
-const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page }) => {
+const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page, filter_category }) => {
 	const {
 		state: { BACKEND_URL },
 		dispatch,
@@ -44,7 +45,7 @@ const MediaSection: React.FC<Props> = ({ action, section_title, path, data, page
 			} catch (err: any) {}
 		};
 		asyncFetch();
-	}, [page]);
+	}, [page, filter_category]);
 
 	if (data) {
 		displayMedia = data.map((movie: any, index: any) => {

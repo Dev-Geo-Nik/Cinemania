@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookmarkController;
-use App\Http\Controllers\MoviesDatabase;
+use App\Http\Controllers\MovieDatabase;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MovieFilterController;
 use App\Http\Controllers\ProtectRouteController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Http\Request;
@@ -24,21 +25,27 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/movies/trending', [MoviesDatabase::class, 'trending']);
-Route::get('/movies/genres', [MoviesDatabase::class, 'get_genres']);
-Route::get('/movies/week-trending/{page}', [MoviesDatabase::class, 'week_trending']);
-Route::get('/movies/trending-daily-persons/{page}', [MoviesDatabase::class, 'day_trending_people']);
-Route::get('/movies/top-rated/{page}', [MoviesDatabase::class, 'top_rated_movies']);
-Route::get('/movies/upcoming/{page}', [MoviesDatabase::class, 'upcoming_movies']);
-Route::get('/movies/playing-now/{page}', [MoviesDatabase::class, 'now_playing_movies']);
-Route::get('/movies/movie/{id}', [MoviesDatabase::class, 'get_movie']);
-Route::get('/movies/movie/cast/{id}', [MoviesDatabase::class, 'get_cast']);
-Route::get('/movies/movie/trailer-list/{id}', [MoviesDatabase::class, 'get_list_of_trailers']);
-Route::get('/movies/movie/similar-movies/{id}', [MoviesDatabase::class, 'get_list_of_similar_movies']);
-Route::get('/person/{id}', [MoviesDatabase::class, 'get_person_details']);
-Route::get('/person/work/{id}', [MoviesDatabase::class, 'get_known_for']);
-Route::get('/person/socials/{id}', [MoviesDatabase::class, 'get_social_links']);
-Route::get('/movies/genre', [MoviesDatabase::class, 'get_genre']);
+Route::get('/movies/trending', [MovieDatabase::class, 'trending']);
+Route::get('/movies/genres', [MovieDatabase::class, 'get_genres']);
+Route::get('/movies/week-trending/{page}', [MovieDatabase::class, 'week_trending']);
+Route::get('/movies/trending-daily-persons/{page}', [MovieDatabase::class, 'day_trending_people']);
+Route::get('/movies/top-rated/{page}', [MovieDatabase::class, 'top_rated_movies']);
+Route::get('/movies/upcoming/{page}', [MovieDatabase::class, 'upcoming_movies']);
+Route::get('/movies/playing-now/{page}', [MovieDatabase::class, 'now_playing_movies']);
+Route::get('/movies/movie/{id}', [MovieDatabase::class, 'get_movie']);
+Route::get('/movies/movie/cast/{id}', [MovieDatabase::class, 'get_cast']);
+Route::get('/movies/movie/trailer-list/{id}', [MovieDatabase::class, 'get_list_of_trailers']);
+Route::get('/movies/movie/similar-movies/{id}', [MovieDatabase::class, 'get_list_of_similar_movies']);
+Route::get('/person/{id}', [MovieDatabase::class, 'get_person_details']);
+Route::get('/person/work/{id}', [MovieDatabase::class, 'get_known_for']);
+Route::get('/person/socials/{id}', [MovieDatabase::class, 'get_social_links']);
+Route::get('/movies/genre', [MovieDatabase::class, 'get_genre']);
+
+
+Route::get('/movies/filter/category/{genre_id}/{page}', [MovieFilterController::class, 'get_movie_by_genre']);
+
+
+
 
 
 Route::controller(ProtectRouteController::class)->group(function () {
